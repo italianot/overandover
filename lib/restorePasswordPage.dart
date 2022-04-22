@@ -10,15 +10,21 @@ class RestorePasswordPage extends StatelessWidget {
     Widget inputSection = Column(
       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const HomeScreen()),
-              );
-          },
-          icon: const Icon(Icons.arrow_back)
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreen()),
+                  );
+              },
+              icon: const Icon(Icons.arrow_back)
+            ),
+          ),
         ),
         
         Container(
@@ -50,7 +56,12 @@ class RestorePasswordPage extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: RaisedButton(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
             child: const Text("Восстановить"),
             onPressed: () {},
           ),

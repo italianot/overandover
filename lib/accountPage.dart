@@ -10,15 +10,20 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header = Column(
       children: <Widget>[
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MenuPage()),
-            );
-          },
-          icon: Image.asset('lib/assets/images/user.png'),
-          iconSize: 8,
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MenuPage()),
+                );
+              },
+              icon: const Icon(Icons.arrow_back)
+            ),
+          ),
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
@@ -96,9 +101,14 @@ class AccountPage extends StatelessWidget {
               ),
             ]),
             ElevatedButton(
-          child: const Text("Редактировать"),
-          onPressed: () {},
-        ),
+              style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+              child: const Text("Редактировать"),
+              onPressed: () {},
+            ),
         
       ],
     );

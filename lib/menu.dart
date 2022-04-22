@@ -12,46 +12,65 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header = Column(
       children: <Widget>[
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-          },
-          icon: const Icon(Icons.arrow_back)
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
+              icon: const Icon(Icons.arrow_back)
+            ),
+          ),
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Text('Меню'),
+          child: Text('Меню',
+          style: TextStyle(
+                fontSize: 20
+                )
+          ),
         )
       ],
     );
 
     Widget body = Column(
       children: const <Widget>[
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text('Белов Никита Андреевич'),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text('Белов Никита Андреевич'),
+          ),
         ),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text('Лицевой счет номер: 4586891'),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text('Лицевой счет номер: 4586891'),
+          ),
         )
       ],
     );
 
     Widget buttons = Column(
       children: <Widget>[
-        ElevatedButton(
-          child: const Text("Личная информация"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AccountPage()),
-            );
-          },
-        ),
+        Row(children: const <Widget>[
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text('Лицевые счета'),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
+              child: MyStatefulWidget(),
+            ),
+
+        ]),
+        
         Row(children:  <Widget>[
           const Padding(
             padding: EdgeInsets.all(8.0),
@@ -63,14 +82,48 @@ class MenuPage extends StatelessWidget {
             onChanged: (bool value) {}
           )
         ]),
-        ElevatedButton(
-          child: const Text("Выход"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
-          },
+        
+        
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+              ),
+            child: const Text("Личная информация"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AccountPage()),
+              );
+            },
+          ),
+        ),
+
+
+
+        
+
+
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+              ),
+            child: const Text("Выход"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+              );
+            },
+          ),
         ),
       ],
     );
@@ -88,7 +141,7 @@ class MenuPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
               child: body,
             ),
-            const MyStatefulWidget(),
+            
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
               child: buttons,

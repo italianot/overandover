@@ -46,14 +46,23 @@ class HomeScreen extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-          child: RaisedButton(
-            child: const Text("Войти"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
-            },
+          child: ButtonTheme(
+            minWidth: 300.0,
+            height: 100.0,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+              child: const Text("Войти"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
+            ),
           ),
         ),
         Padding(
@@ -68,19 +77,7 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-        ),/*
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-          child: FlatButton(
-            child: const Text("Зарегистрироваться"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const RegisterPage()),
-              );
-            },
-          ),
-        ),*/
+        ),
       ],
     );
 
@@ -90,14 +87,13 @@ class HomeScreen extends StatelessWidget {
         body: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 180, 8, 8),
+              padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Image.asset(
-                  'assets/images/counter.jpg',
-                  width: 600,
+                  "images/logo.png",
+                  width: 150,
                   height: 240,
-                  fit: BoxFit.cover,
                 ),
               ),
             ),

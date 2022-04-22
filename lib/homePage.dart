@@ -10,23 +10,29 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget iconButtons = Row(children: <Widget>[
-      IconButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MenuPage()),
-          );
-        },
-        icon: const Icon(Icons.person),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MenuPage()),
+            );
+          },
+          icon: const Icon(Icons.person),
+        ),
       ),
-      IconButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HistoryPage()),
-          );
-        },
-        icon: const Icon(Icons.view_headline),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HistoryPage()),
+            );
+          },
+          icon: const Icon(Icons.view_headline),
+        ),
       ),
     ]);
 
@@ -42,27 +48,33 @@ class HomePage extends StatelessWidget {
         title: Text("Ваши приборы учета"),
         dense: true,
       ),
-      Column(
-        //счетчик
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
+      
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(//счетчик
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
                 alignment: Alignment.centerLeft,
                 child: Image.asset(
-                  'assets/images/counter.jpg',
-                  width: 100,
-                  height: 50,
-                )),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Счетчик CE303 R33'),
+                  "images/counter.jpg",
+                    width: 100,
+                    height: 50,
+                )
+              ),
             ),
-          )
-        ],
+            
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Счетчик CE303 R33')),
+            ),
+              
+            
+          ],
+        ),
       ),
       const ListTile(
         title: Text("Передача новых показаний"),
@@ -79,12 +91,17 @@ class HomePage extends StatelessWidget {
         title: Text("Текущий расход: 5447 кВ.ч."),
         dense: true,
       ),
-      RaisedButton(
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
         child: const Text("Загрузить фото"),
         onPressed: () {},
       ),
       const Padding(
-        padding: EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 0),
+        padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
         child: Text('или'),
       ),
       Padding(
@@ -93,7 +110,12 @@ class HomePage extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: RaisedButton(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
           child: const Text("Передать показания"),
           onPressed: () {},
         ),
