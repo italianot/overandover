@@ -10,8 +10,9 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget header = Column(
+    Widget header = Row(
       children: <Widget>[
+        
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(

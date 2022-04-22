@@ -8,7 +8,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget header = Column(
+    Widget header = Row(
       children: <Widget>[
         Align(
           alignment: Alignment.centerLeft,
@@ -27,7 +27,11 @@ class AccountPage extends StatelessWidget {
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Text('Личные данные'),
+          child: Text('Личные данные',
+          style: TextStyle(
+                fontSize: 20
+                )
+          ),
         )
       ],
     );

@@ -8,9 +8,8 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Widget returnSection1 = Column(
-      children:  <Widget>[
-        Align(
+    Widget header = Row(
+      children: <Widget>[Align(
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -33,9 +32,17 @@ class HistoryPage extends StatelessWidget {
                 fontSize: 20
                 )
               ),
-            ),
+            ),],
+    );
 
-        const ListTile(
+    Widget returnSection1 = Column(
+      children:  const <Widget>[
+        
+        
+
+
+
+        ListTile(
         leading: Icon(Icons.light,
             color: Color.fromARGB(255, 219, 145, 8)),
         title: Text("Электроэнергия"),
@@ -43,7 +50,7 @@ class HistoryPage extends StatelessWidget {
         isThreeLine: true,
         dense: false,
         ),
-        const ListTile(
+        ListTile(
         leading: Icon(Icons.light,
             color: Color.fromARGB(255, 219, 145, 8)),
         title: Text("Электроэнергия"),
@@ -61,6 +68,7 @@ class HistoryPage extends StatelessWidget {
       home: Scaffold(
         body: ListView(
           children: [
+            header,
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
               child: returnSection1, 
