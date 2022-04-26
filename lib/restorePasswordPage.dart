@@ -30,13 +30,7 @@ class RestorePasswordPage extends StatelessWidget {
         Container(
             padding: const EdgeInsets.only(
                 top: 150, left: 10, right: 10, bottom: 20),
-            child: const Text("Укажите ваш email для восстановления пароля",
-                textDirection: TextDirection.ltr, // текст слева направо
-                textAlign: TextAlign.center, // выравнивание по центру
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 26, // высота шрифта 26
-                ))),
+            child: const Text("Укажите ваш email для восстановления пароля")),
         Padding(
           padding:
               const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 30),

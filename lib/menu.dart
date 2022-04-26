@@ -12,7 +12,6 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header = Row(
       children: <Widget>[
-        
         Align(
           alignment: Alignment.centerLeft,
           child: Padding(
@@ -41,20 +40,17 @@ class MenuPage extends StatelessWidget {
 
     Widget body = Column(
       children: const <Widget>[
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Белов Никита Андреевич'),
-          ),
+        ListTile(
+        leading: Icon(Icons.person, color: Color.fromARGB(255, 219, 145, 8)),
+        title: Text("Белов Никита Андреевич", style: TextStyle(fontSize: 16)),
+        dense: true,
         ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Лицевой счет номер: 4586891'),
-          ),
-        )
+
+        ListTile(
+        leading: Icon(Icons.assignment, color: Color.fromARGB(255, 219, 145, 8)),
+        title: Text("Лицевой счет номер: 4586891", style: TextStyle(fontSize: 16)),
+        dense: true,
+        ),
       ],
     );
 
@@ -78,7 +74,7 @@ class MenuPage extends StatelessWidget {
             child: Text('Напоминание'),
           ),
           Switch(
-            value: true, 
+            value: false, 
             dragStartBehavior: DragStartBehavior.start,
             onChanged: (bool value) {}
           )
@@ -102,12 +98,6 @@ class MenuPage extends StatelessWidget {
             },
           ),
         ),
-
-
-
-        
-
-
 
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -134,15 +124,8 @@ class MenuPage extends StatelessWidget {
       home: Scaffold(
         body: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
-              child: header,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
-              child: body,
-            ),
-            
+            header,
+            body,
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
               child: buttons,
@@ -170,11 +153,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       value: dropdownValue,
       icon: const Icon(Icons.arrow_drop_down),
       elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
+      style: const TextStyle(color: Colors.blue),
       underline: Container(
         height: 2,
         width: 60,
-        color: Colors.deepPurpleAccent,
+        color: Colors.blue,
       ),
       onChanged: (String? newValue) {
         setState(() {

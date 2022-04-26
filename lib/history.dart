@@ -26,7 +26,7 @@ class HistoryPage extends StatelessWidget {
           ),
         ),
         const Padding( 
-              padding: EdgeInsets.only(top: 3, left: 8, right: 8, bottom: 15),
+              padding: EdgeInsets.all(8.0),
               child: Text('История показаний',
               style: TextStyle(
                 fontSize: 20

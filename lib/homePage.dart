@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget iconButtons = Row(children: <Widget>[
+    Widget header = Row(children: <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: IconButton(
@@ -48,35 +48,36 @@ class HomePage extends StatelessWidget {
         title: Text("Ваши приборы учета"),
         dense: true,
       ),
-      
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(//счетчик
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Image.asset(
-                  "images/counter.jpg",
+
+
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
+          child: SizedBox(
+            width: 150,
+            height: 170,
+            child: Card(
+              elevation: 10,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "images/counter.jpg",
                     width: 100,
-                    height: 50,
-                )
+                    height: 140,
+                  ),
+                  const Text('Счетчик CE303 R33')
+                ],
               ),
             ),
-            
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Счетчик CE303 R33')),
-            ),
-              
-            
-          ],
+          ),
         ),
       ),
+
+
+
       const ListTile(
+        leading: Icon(Icons.add, color: Color.fromARGB(255, 219, 145, 8)),
         title: Text("Передача новых показаний"),
       ),
       const ListTile(
@@ -93,10 +94,10 @@ class HomePage extends StatelessWidget {
       ),
       ElevatedButton(
         style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+        ),
         child: const Text("Загрузить фото"),
         onPressed: () {},
       ),
@@ -112,10 +113,10 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
             ),
+          ),
           child: const Text("Передать показания"),
           onPressed: () {},
         ),
@@ -126,7 +127,7 @@ class HomePage extends StatelessWidget {
       title: 'Flutter layout',
       home: Scaffold(
         body: ListView(
-          children: [iconButtons, iconsAndText],
+          children: [header, iconsAndText],
         ),
       ),
     );

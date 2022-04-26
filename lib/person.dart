@@ -1,37 +1,40 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'person.g.dart';
+
+
+@JsonSerializable()
 class Person {
+  // @JsonKey() //при не совпадении ключей
   String email;
   String password;
   String name;
   String surname;
+  String patronymic; //отчество
   String phoneNumber;
   String accountNumber;
   String city;
-  String addess;
+  String street;
+  String house;
   String flat;
-  //показания + расход List<Indications> indications         ok/no??
+  String indications; //показания
+  String consumption; //потребление
 
-  Person({
-    required this.email,
-    required this.password,
-    required this.name,
-    required this.surname,
-    required this.phoneNumber,
-    required this.accountNumber,
-    required this.city,
-    required this.addess,
-    required this.flat,
-  });
+  Person(
+      {required this.email,
+      required this.password,
+      required this.name,
+      required this.surname,
+      required this.patronymic,
+      required this.phoneNumber,
+      required this.accountNumber,
+      required this.city,
+      required this.street,
+      required this.house,
+      required this.flat,
+      required this.indications,
+      required this.consumption});
 
-  factory Person.fromJson(Map<String, dynamic> json) {
-    return Person(
-        email: json['email'] as String,
-        password: json['password'] as String,
-        name: json['name'] as String,
-        surname: json['surname'] as String,
-        phoneNumber: json['phoneNumber'] as String,
-        accountNumber: json['accountNumber'] as String,
-        city: json['city'] as String,
-        addess: json['addess'] as String,
-        flat: json['flat'] as String);
-  }
+  factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonToJson(this);
 }
