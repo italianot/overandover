@@ -4,7 +4,6 @@ import 'package:overandover/main.dart';
 import 'accountPage.dart';
 import 'homePage.dart';
 
-
 class MenuPage extends StatelessWidget {
   const MenuPage({Key? key}) : super(key: key);
 
@@ -17,23 +16,18 @@ class MenuPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              },
-              icon: const Icon(Icons.arrow_back)
-            ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                icon: const Icon(Icons.arrow_back)),
           ),
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Text('Меню',
-          style: TextStyle(
-                fontSize: 20
-                )
-          ),
+          child: Text('Меню', style: TextStyle(fontSize: 20)),
         )
       ],
     );
@@ -41,81 +35,59 @@ class MenuPage extends StatelessWidget {
     Widget body = Column(
       children: const <Widget>[
         ListTile(
-        leading: Icon(Icons.person, color: Color.fromARGB(255, 219, 145, 8)),
-        title: Text("Белов Никита Андреевич", style: TextStyle(fontSize: 16)),
-        dense: true,
+          leading: Icon(Icons.person, color: Color.fromARGB(255, 219, 145, 8)),
+          title: Text("Белов Никита Андреевич", style: TextStyle(fontSize: 16)),
+          dense: true,
         ),
-
         ListTile(
-        leading: Icon(Icons.assignment, color: Color.fromARGB(255, 219, 145, 8)),
-        title: Text("Лицевой счет номер: 4586891", style: TextStyle(fontSize: 16)),
-        dense: true,
+          leading:
+              Icon(Icons.assignment, color: Color.fromARGB(255, 219, 145, 8)),
+          title: Text("Лицевой счет номер: 4586891",
+              style: TextStyle(fontSize: 16)),
+          dense: true,
         ),
       ],
     );
 
     Widget buttons = Column(
       children: <Widget>[
-        Row(children: const <Widget>[
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Лицевые счета'),
-          ),
-          Padding(
-              padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
-              child: MyStatefulWidget(),
-            ),
-
-        ]),
-        
-        Row(children:  <Widget>[
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Напоминание'),
-          ),
-          Switch(
-            value: false, 
-            dragStartBehavior: DragStartBehavior.start,
-            onChanged: (bool value) {}
-          )
-        ]),
-        
-        
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-            child: const Text("Личная информация"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AccountPage()),
-              );
-            },
+        ListTile(
+          leading: const Icon(Icons.view_list, color: Color.fromARGB(255, 219, 145, 8)),
+          title: Row(
+            children: const [
+              Text('Лицевые счета'),
+              Padding(
+                padding: EdgeInsets.only(left: 8),
+                child: MyStatefulWidget(),
+              )
+            ],
           ),
         ),
 
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-            child: const Text("Выход"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-              );
-            },
+        ListTile(
+          leading: const Icon(Icons.flag, color: Color.fromARGB(255, 219, 145, 8)),
+          title: Row(children: [
+            const Text("Напоминание"),
+            Switch(
+              value: false,
+              dragStartBehavior: DragStartBehavior.start,
+              onChanged: (bool value) {})
+            ],
           ),
+          onTap: null,
         ),
+
+        ListTile(
+          leading: const Icon(Icons.assignment_ind, color: Color.fromARGB(255, 219, 145, 8)),
+          title: const Text("Личная информация"),
+          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const AccountPage()));},
+        ),
+        
+        ListTile(
+          leading: const Icon(Icons.exit_to_app_rounded, color: Color.fromARGB(255, 219, 145, 8)),
+          title: const Text("Выход"),
+          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));},
+        )
       ],
     );
 
@@ -126,10 +98,7 @@ class MenuPage extends StatelessWidget {
           children: [
             header,
             body,
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
-              child: buttons,
-            ),
+            buttons,
           ],
         ),
       ),

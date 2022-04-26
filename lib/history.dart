@@ -69,10 +69,7 @@ class HistoryPage extends StatelessWidget {
         body: ListView(
           children: [
             header,
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 10),
-              child: returnSection1, 
-            ),
+            returnSection1, 
           ],
         ),
       ),

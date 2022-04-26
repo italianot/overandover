@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
 
 
       const ListTile(
-        leading: Icon(Icons.add, color: Color.fromARGB(255, 219, 145, 8)),
+        leading: Icon(Icons.note_add, color: Color.fromARGB(255, 219, 145, 8)),
         title: Text("Передача новых показаний"),
       ),
       const ListTile(

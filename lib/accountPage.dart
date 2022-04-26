@@ -37,78 +37,99 @@ class AccountPage extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             child: Table(
               columnWidths: const {
-                0: FlexColumnWidth(5),
-                1: FlexColumnWidth(15)
+                0: FlexColumnWidth(1),
+                1: FlexColumnWidth(2)
               },
               border: const TableBorder(
                   verticalInside: BorderSide(
                       width: 1, color: Colors.blue, style: BorderStyle.solid)),
               children: const [
                 TableRow(children: [
-                  Text('ФИО', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('ФИО', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('Белов Никита Андреевич',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ]),
                 TableRow(children: [
-                  Text('Телефон', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('Телефон', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('89277077000',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ]),
                 TableRow(children: [
-                  Text('E-mail', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('E-mail', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('n@mail.ru',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ]),
                 TableRow(children: [
-                  Text('Город', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('Город', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('Иркутск',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ]),
                 TableRow(children: [
-                  Text('Улица', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('Улица', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('Байкальская',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ]),
                 TableRow(children: [
-                  Text('Дом', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('Дом', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('123а/4',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ]),
                 TableRow(children: [
-                  Text('Квартира', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 55, top: 5),
+                    child: Text('Квартира', textAlign: TextAlign.left),
+                  ),
                   Padding(
                     padding:
-                        EdgeInsets.only(top: 0, left: 10, right: 0, bottom: 0),
+                        EdgeInsets.only(left: 10, top: 5),
                     child: Text('56',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -118,15 +139,16 @@ class AccountPage extends StatelessWidget {
             ),
           ),
         ]),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-          ),
-          child: const Text("Редактировать"),
-          onPressed: () {},
+
+
+        ListTile(
+          leading: const Icon(Icons.edit, color: Color.fromARGB(255, 219, 145, 8)),
+          title: const Text("Редактировать"),
+          onTap: () {},
         ),
+
+
+        
       ],
     );
 
