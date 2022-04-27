@@ -36,25 +36,98 @@ class HistoryPage extends StatelessWidget {
     );
 
     Widget returnSection1 = Column(
-      children:  const <Widget>[
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
         
-        
+        // Container(
+        //   margin: const EdgeInsets.all(10),
+        //     child: Table(
+        //       columnWidths: const {
+        //         0: FlexColumnWidth(1),
+        //         1: FlexColumnWidth(2)
+        //       },
+        //       border: const TableBorder(
+        //           verticalInside: BorderSide(
+        //               width: 1, color: Colors.blue, style: BorderStyle.solid)),
+        //       children: const [
+        //         TableRow(children: [
+        //           Padding(
+        //             padding: EdgeInsets.only(left: 55, top: 5),
+        //             child: Text('Электроэнергия', textAlign: TextAlign.left),
+        //           ),
+        //           Padding(
+        //             padding:
+        //                 EdgeInsets.only(left: 10, top: 5),
+        //             child: Text('Показания: 4752 кВт.ч.',
+        //                 textAlign: TextAlign.left,
+        //                 style: TextStyle(fontWeight: FontWeight.bold)),
+        //           ),
+        //         ]),
+        //         TableRow(children: [
+        //           Padding(
+        //             padding: EdgeInsets.only(left: 55, top: 5),
+        //             child: Text('Способ: по телефону', textAlign: TextAlign.left),
+        //           ),
+        //           Padding(
+        //             padding:
+        //                 EdgeInsets.only(left: 10, top: 5),
+        //             child: Text('Расход: 82 кВт.ч.',
+        //                 textAlign: TextAlign.left,
+        //                 style: TextStyle(fontWeight: FontWeight.bold)),
+        //           ),
+        //         ]),
+        //       ],
+        //     ),
+        // ),
 
 
 
         ListTile(
-        leading: Icon(Icons.light,
+        leading: const Icon(Icons.light,
             color: Color.fromARGB(255, 219, 145, 8)),
-        title: Text("Электроэнергия"),
-        subtitle: Text("Способ: по телефону \nПоказания: 4752 кВт.ч. \nРасход: 82 кВт.ч."),
-        isThreeLine: true,
-        dense: false,
+        title: const Text("2022-04-27"),
+        subtitle: Container(
+          margin: const EdgeInsets.only(top: 5),
+            child: Table(
+              // columnWidths: const {
+              //   0: FlexColumnWidth(1),
+              //   1: FlexColumnWidth(2)
+              // },
+              // border: const TableBorder(
+              //     verticalInside: BorderSide(
+              //         width: 1, color: Colors.blue, style: BorderStyle.solid //вертикальная полоса
+              //     )
+              // ),
+              children: const [
+                TableRow(children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text('Электроэнергия', textAlign: TextAlign.left),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 10, top: 5),
+                    child: Text('Показания: 4752 кВт.ч.',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                ]),
+                TableRow(children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text('Способ: по телефону', textAlign: TextAlign.left),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 10, top: 5),
+                    child: Text('Расход: 82 кВт.ч.',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                ]),
+              ],
+            ),
         ),
-        ListTile(
-        leading: Icon(Icons.light,
-            color: Color.fromARGB(255, 219, 145, 8)),
-        title: Text("Электроэнергия"),
-        subtitle: Text("Способ: по телефону \nПоказания: 4800 кВт.ч. \nРасход: 100 кВт.ч."),
         isThreeLine: true,
         dense: false,
         ),

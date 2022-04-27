@@ -32,6 +32,7 @@ class AccountPage extends StatelessWidget {
 
     Widget body = Column(
       children: <Widget>[
+        
         Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           Container(
             margin: const EdgeInsets.all(10),
