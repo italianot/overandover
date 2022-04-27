@@ -93,11 +93,17 @@ class HomePage extends StatelessWidget {
         dense: true,
       ),
       ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+        style: 
+          ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(200, 40)),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
           ),
-        ),
+          
+
         child: const Text("Загрузить фото"),
         onPressed: () {},
       ),
@@ -109,12 +115,17 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
         child: TextFormField(),
       ),
+      
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+          style: 
+          ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(200, 40)),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
             ),
           ),
           child: const Text("Передать показания"),

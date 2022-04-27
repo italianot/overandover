@@ -44,27 +44,29 @@ class HomeScreen extends StatelessWidget {
 
     Widget buttonSection = Column(
       children: <Widget>[
+
         Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-          child: ButtonTheme(
-            minWidth: 300.0,
-            height: 100.0,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          style: 
+          ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(200, 40)),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
-              child: const Text("Войти"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
-              },
-            ),
           ),
+          child: const Text("Войти"),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),);},
         ),
+      ),
+
+           
+        
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
           child: FlatButton(
