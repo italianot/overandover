@@ -15,7 +15,9 @@ class HistoryWidgetModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void createPost() async {}
+  Future<void> createPost() async {
+    final posts = await apiHistory.createPost(title: 'adv', body: 'ev');
+  }
 }
 
 class HistoryModelProvider extends InheritedNotifier {

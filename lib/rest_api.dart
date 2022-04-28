@@ -11,16 +11,35 @@ class URLS {
 }
 
 class ApiHistory {
-  final history = HttpClient();
+  final client = HttpClient();
+
+  Future<Post?> createPost(
+      {required String title, required String body}) async {
+    final url = Uri.parse('http://electricity.tealeaf.su/api/history');
+    final parameters = <String, dynamic>{
+      'title': title,
+      'body': body,
+      'userId': 4
+    };
+    final request = await client.postUrl(url);
+    request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
+    request.write(jsonEncode(parameters));
+    final response = await request.close();
+    final jsonStrings = await response.transform(utf8.decoder).toList();
+    final jsonString = jsonStrings.join();
+    final json = jsonDecode(jsonString) as Map<String, dynamic>;
+    final post = Post.fromJson(json);
+    return post;
+  }
 
   Future<List<Post>> getHistory() async {
     final url = Uri.parse('http://electricity.tealeaf.su/api/history');
-    final request = await history.getUrl(url);
+    final request = await client.getUrl(url);
     final response = await request.close();
     final jsonStrings = await response.transform(utf8.decoder).toList();
     final jsonString = jsonStrings.join();
     final json = jsonDecode(jsonString) as List<dynamic>;
-    
+
     final posts = json
         .map((dynamic e) => Post.fromJson(e as Map<String, dynamic>))
         .toList();
