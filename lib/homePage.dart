@@ -1,14 +1,18 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:overandover/post.dart';
 import 'history.dart';
 import 'menu.dart';
+import 'post.dart';
 
 class HomePage extends StatelessWidget {
+  
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final post = ModalRoute.of(context)!.settings.arguments as Post;
     Widget header = Row(children: <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -28,7 +32,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HistoryPage()),
+              MaterialPageRoute(builder: (context) =>  HistoryPage(post)),
             );
           },
           icon: const Icon(Icons.view_headline),
