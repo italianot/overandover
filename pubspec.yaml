@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   json_annotation: ^4.0.1
-  http:
+  http: 
   
 
 

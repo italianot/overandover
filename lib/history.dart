@@ -89,15 +89,6 @@ class HistoryPage extends StatelessWidget {
         subtitle: Container(
           margin: const EdgeInsets.only(top: 5),
             child: Table(
-              // columnWidths: const {
-              //   0: FlexColumnWidth(1),
-              //   1: FlexColumnWidth(2)
-              // },
-              // border: const TableBorder(
-              //     verticalInside: BorderSide(
-              //         width: 1, color: Colors.blue, style: BorderStyle.solid //вертикальная полоса
-              //     )
-              // ),
               children: const [
                 TableRow(children: [
                   Padding(

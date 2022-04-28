@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'person.g.dart';
+part 'post.g.dart';
 
 
 @JsonSerializable()
-class Person {
+class Post {
   // @JsonKey() //при не совпадении ключей
   String email;
   String password;
@@ -19,7 +19,7 @@ class Person {
   String indications; //показания
   String consumption; //потребление
 
-  Person(
+  Post(
       {required this.email,
       required this.password,
       required this.name,
@@ -34,7 +34,7 @@ class Person {
       required this.indications,
       required this.consumption});
 
-  factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
+  factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PersonToJson(this);
+  Map<String, dynamic> toJson() => _$PostToJson(this);
 }

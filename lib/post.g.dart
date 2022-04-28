@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'person.dart';
+part of 'post.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Person _$PersonFromJson(Map<String, dynamic> json) {
-  return Person(
+Post _$PostFromJson(Map<String, dynamic> json) {
+  return Post(
     email: json['email'] as String,
     password: json['password'] as String,
     name: json['name'] as String,
@@ -24,7 +24,7 @@ Person _$PersonFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$PersonToJson(Person instance) => <String, dynamic>{
+Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
       'name': instance.name,

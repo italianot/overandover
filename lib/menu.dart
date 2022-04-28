@@ -51,42 +51,49 @@ class MenuPage extends StatelessWidget {
 
     Widget buttons = Column(
       children: <Widget>[
-        ListTile(
-          leading: const Icon(Icons.view_list, color: Color.fromARGB(255, 219, 145, 8)),
-          title: Row(
-            children: const [
-              Text('Лицевые счета'),
-              Padding(
-                padding: EdgeInsets.only(left: 8),
-                child: MyStatefulWidget(),
-              )
-            ],
-          ),
-        ),
+        // ListTile(
+        //   leading: const Icon(Icons.view_list, color: Color.fromARGB(255, 219, 145, 8)),
+        //   title: Row(
+        //     children: const [
+        //       Text('Лицевые счета'),
+        //       Padding(
+        //         padding: EdgeInsets.only(left: 8),
+        //         child: MyStatefulWidget(),
+        //       )
+        //     ],
+        //   ),
+        // ),
 
         ListTile(
-          leading: const Icon(Icons.flag, color: Color.fromARGB(255, 219, 145, 8)),
-          title: Row(children: [
-            const Text("Напоминание"),
-            Switch(
-              value: false,
-              dragStartBehavior: DragStartBehavior.start,
-              onChanged: (bool value) {})
+          leading:
+              const Icon(Icons.flag, color: Color.fromARGB(255, 219, 145, 8)),
+          title: Row(
+            children: const [
+              Text("Напоминание"),
+              MyStatefulWidget(),
             ],
           ),
           onTap: null,
         ),
 
         ListTile(
-          leading: const Icon(Icons.assignment_ind, color: Color.fromARGB(255, 219, 145, 8)),
+          leading: const Icon(Icons.assignment_ind,
+              color: Color.fromARGB(255, 219, 145, 8)),
           title: const Text("Личная информация"),
-          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const AccountPage()));},
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const AccountPage()));
+          },
         ),
-        
+
         ListTile(
-          leading: const Icon(Icons.exit_to_app_rounded, color: Color.fromARGB(255, 219, 145, 8)),
+          leading: const Icon(Icons.exit_to_app_rounded,
+              color: Color.fromARGB(255, 219, 145, 8)),
           title: const Text("Выход"),
-          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));},
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+          },
         )
       ],
     );
@@ -114,32 +121,17 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  String dropdownValue = '4586891';
+  bool state = false;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_drop_down),
-      elevation: 16,
-      style: const TextStyle(color: Colors.blue),
-      underline: Container(
-        height: 2,
-        width: 60,
-        color: Colors.blue,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
+    return Switch(
+        value: state,
+        onChanged: (bool s) {
+          setState(() {
+            state = s;
+            //print(state);
+          });
         });
-      },
-      items: <String>['4586891', '8418553']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
   }
 }
