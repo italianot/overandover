@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  HistoryPage(post)),
+              MaterialPageRoute(builder: (context) =>  HistoryPage()),
             );
           },
           icon: const Icon(Icons.view_headline),
