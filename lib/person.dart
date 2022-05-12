@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'person.g.dart';
+//part 'person.g.dart';
 
 
 @JsonSerializable()
@@ -34,7 +34,7 @@ class Person {
       required this.indications,
       required this.consumption});
 
-  factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
+  // factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PersonToJson(this);
+  // Map<String, dynamic> toJson() => _$PersonToJson(this);
 }

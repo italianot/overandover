@@ -51,31 +51,17 @@ class MenuPage extends StatelessWidget {
 
     Widget buttons = Column(
       children: <Widget>[
-        // ListTile(
-        //   leading: const Icon(Icons.view_list, color: Color.fromARGB(255, 219, 145, 8)),
-        //   title: Row(
-        //     children: const [
-        //       Text('Лицевые счета'),
-        //       Padding(
-        //         padding: EdgeInsets.only(left: 8),
-        //         child: MyStatefulWidget(),
-        //       )
-        //     ],
-        //   ),
-        // ),
-
         ListTile(
           leading:
               const Icon(Icons.flag, color: Color.fromARGB(255, 219, 145, 8)),
           title: Row(
             children: const [
               Text("Напоминание"),
-              MyStatefulWidget(),
             ],
           ),
           onTap: null,
+          trailing: const MyStatefulWidget(),
         ),
-
         ListTile(
           leading: const Icon(Icons.assignment_ind,
               color: Color.fromARGB(255, 219, 145, 8)),
@@ -85,7 +71,6 @@ class MenuPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const AccountPage()));
           },
         ),
-
         ListTile(
           leading: const Icon(Icons.exit_to_app_rounded,
               color: Color.fromARGB(255, 219, 145, 8)),

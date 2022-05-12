@@ -4,7 +4,6 @@ import 'restorePasswordPage.dart';
 import 'homePage.dart';
 
 void main() {
-  // debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
 

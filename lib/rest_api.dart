@@ -1,3 +1,5 @@
+// ПОЛУРАБОЧИЙ ВАРИАНТ ///////////////////////////////////
+
 import 'package:overandover/post.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,17 +17,45 @@ class RemoteService {
     }
   }
 }
-
-
+//////////////////////////////////////////////////////////
 
 // import 'dart:convert';
-// import 'dart:html';
 // import 'dart:io';
-// import 'package:overandover/person.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:overandover/post.dart';
 
-// class ApiHistory {
+// class ApiService {
+//   static Future<List<dynamic>?> getEmployees() async {
+//     var client = http.Client();
+//     var uri = Uri.parse("http://electricity.tealeaf.su/api/history");
+//     var response = await client.get(uri);
+//     if (response.statusCode == 200) {
+//       return json.decode(response.body);
+//     } else {
+//       return null;
+//     }
+//   }
+
+//   // static Future<bool> addEmployee(body) async {
+//   //   final response = await http.post("${URLS.BASE_URL}/create", body: body);
+//   //   if (response.statusCode == 200) {
+//   //     return true;
+//   //   } else {
+//   //     return false;
+//   //   }
+//   // }
+// }
+
+
+
+
+
+
+
+
+
+
+//class ApiHistory {
 //   final client = HttpClient();
 
 //   Future<Post?> createPost(
