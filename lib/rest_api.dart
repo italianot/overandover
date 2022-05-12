@@ -1,48 +1,68 @@
-import 'dart:convert';
-import 'dart:html';
-import 'dart:io';
-import 'package:overandover/person.dart';
-import 'package:http/http.dart' as http;
 import 'package:overandover/post.dart';
+import 'package:http/http.dart' as http;
 
-class ApiHistory {
-  final client = HttpClient();
+class RemoteService {
+  Future<List<Post>?> getPosts() async {
+    var client = http.Client();
 
-  Future<Post?> createPost(
-      {
-        required String title, required String body}) async {
-        final url = Uri.parse('http://electricity.tealeaf.su/api/history');
-        final parameters = <String, dynamic>{
-        'title': title,
-        'body': body,
-        'userId': 4
-      };
-    final request = await client.postUrl(url);
-    request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
-    request.write(jsonEncode(parameters));
-    final response = await request.close();
-    final jsonStrings = await response.transform(utf8.decoder).toList();
-    final jsonString = jsonStrings.join();
-    final json = jsonDecode(jsonString) as Map<String, dynamic>;
-    final post = Post.fromJson(json);
-    return post;
-  }
-
-  Future<List<Post>> getHistory() async {
-    final url = Uri.parse('https://electricity.tealeaf.su/api/history');//подготовка url
-    final request = await client.getUrl(url);//делаем request
-    final response = await request.close();//отправляем в сеть и ждем ответ с помощью await
-    //преобразование ответа в посты
-    final jsonStrings = await response.transform(utf8.decoder).toList();
-    final jsonString = jsonStrings.join();
-    final json = jsonDecode(jsonString) as List<dynamic>;
-
-    final posts = json
-        .map((dynamic e) => Post.fromJson(e as Map<String, dynamic>))
-        .toList();
-    return posts;
+    var uri = Uri.parse("http://electricity.tealeaf.su/api/history");
+    var response = await client.get(uri);
+    if (response.statusCode == 200) {
+      var json = response.body;
+      return postFromJson(json);
+    } else {
+      return null;
+    }
   }
 }
+
+
+
+// import 'dart:convert';
+// import 'dart:html';
+// import 'dart:io';
+// import 'package:overandover/person.dart';
+// import 'package:http/http.dart' as http;
+// import 'package:overandover/post.dart';
+
+// class ApiHistory {
+//   final client = HttpClient();
+
+//   Future<Post?> createPost(
+//       {
+//         required String title, required String body}) async {
+//         final url = Uri.parse('http://electricity.tealeaf.su/api/history');
+//         final parameters = <String, dynamic>{
+//         'title': title,
+//         'body': body,
+//         'userId': 4
+//       };
+//     final request = await client.postUrl(url);
+//     request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
+//     request.write(jsonEncode(parameters));
+//     final response = await request.close();
+//     final jsonStrings = await response.transform(utf8.decoder).toList();
+//     final jsonString = jsonStrings.join();
+//     final json = jsonDecode(jsonString) as Map<String, dynamic>;
+//     final post = Post.fromJson(json);
+//     return post;
+//   }
+
+//   Future<List<Post>> getHistory() async {
+//     final url = Uri.parse('https://electricity.tealeaf.su/api/history');//подготовка url
+//     final request = await client.getUrl(url);//делаем request
+//     final response = await request.close();//отправляем в сеть и ждем ответ с помощью await
+//     //преобразование ответа в посты
+//     final jsonStrings = await response.transform(utf8.decoder).toList();
+//     final jsonString = jsonStrings.join();
+//     final json = jsonDecode(jsonString) as List<dynamic>;
+
+//     final posts = json
+//         .map((dynamic e) => Post.fromJson(e as Map<String, dynamic>))
+//         .toList();
+//     return posts;
+//   }
+// }
 
 
 
