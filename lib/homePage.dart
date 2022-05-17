@@ -7,7 +7,6 @@ import 'menu.dart';
 import 'post.dart';
 
 class HomePage extends StatelessWidget {
-  
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -32,7 +31,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  HistoryPage()),
+              MaterialPageRoute(builder: (context) => HistoryPage()),
             );
           },
           icon: const Icon(Icons.view_headline),
@@ -52,12 +51,11 @@ class HomePage extends StatelessWidget {
         title: Text("Ваши приборы учета"),
         dense: true,
       ),
-
-
       Align(
         alignment: Alignment.centerLeft,
         child: Padding(
-          padding: const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
+          padding:
+              const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
           child: SizedBox(
             width: 150,
             height: 170,
@@ -77,9 +75,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-
-
-
       const ListTile(
         leading: Icon(Icons.note_add, color: Color.fromARGB(255, 219, 145, 8)),
         title: Text("Передача новых показаний"),
@@ -97,19 +92,29 @@ class HomePage extends StatelessWidget {
         dense: true,
       ),
       ElevatedButton(
-        style: 
-          ButtonStyle(
-            minimumSize: MaterialStateProperty.all(const Size(200, 40)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(const Size(200, 40)),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
-          
-
+        ),
         child: const Text("Загрузить фото"),
-        onPressed: () {},
+        onPressed: () => showDialog<String>(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Данная функция находится в разработке.'),
+            content: const Text('Данная функция будет добавлена в следующей версии.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Ок'),
+                child: const Text('Ок'),
+              ),
+            ],
+          ),
+        ),
       ),
       const Padding(
         padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
@@ -119,12 +124,10 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
         child: TextFormField(),
       ),
-      
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
-          style: 
-          ButtonStyle(
+          style: ButtonStyle(
             minimumSize: MaterialStateProperty.all(const Size(200, 40)),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
@@ -148,3 +151,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+

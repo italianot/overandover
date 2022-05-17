@@ -106,15 +106,49 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  bool state = false;
+  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
     return Switch(
-        value: state,
-        onChanged: (bool s) {
+        value: isSwitched,
+        onChanged: (value) {
           setState(() {
-            state = s;
+            isSwitched = value;
+            if (value == true) {
+              showDialog<String>(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Напоминание.'),
+                  content: const Text(
+                      '20 числа Вам придет сообщение с напоминанием о необходимости передать показания приборов до 25 числа текущего месяца.'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Ок'),
+                      child: const Text('Ок'),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              showDialog<String>(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Напоминание.'),
+                  content: const Text(
+                      'Функция напоминания отключена.'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Ок'),
+                      child: const Text('Ок'),
+                    ),
+                  ],
+                ),
+              );
+            }
+
             //print(state);
           });
         });
