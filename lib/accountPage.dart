@@ -32,7 +32,6 @@ class AccountPage extends StatelessWidget {
 
     Widget body = Column(
       children: <Widget>[
-        
         Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           Container(
             margin: const EdgeInsets.all(10),
@@ -51,8 +50,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('ФИО', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('Белов Никита Андреевич',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -64,8 +62,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('Телефон', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('89277077000',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -77,8 +74,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('E-mail', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('n@mail.ru',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -90,8 +86,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('Город', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('Иркутск',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -103,8 +98,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('Улица', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('Байкальская',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -116,8 +110,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('Дом', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('123а/4',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -129,8 +122,7 @@ class AccountPage extends StatelessWidget {
                     child: Text('Квартира', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10, top: 5),
+                    padding: EdgeInsets.only(left: 10, top: 5),
                     child: Text('56',
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
@@ -140,16 +132,12 @@ class AccountPage extends StatelessWidget {
             ),
           ),
         ]),
-
-
         ListTile(
-          leading: const Icon(Icons.edit, color: Color.fromARGB(255, 219, 145, 8)),
+          leading:
+              const Icon(Icons.edit, color: Color.fromARGB(255, 219, 145, 8)),
           title: const Text("Редактировать"),
           onTap: () {},
         ),
-
-
-        
       ],
     );
 

@@ -18,6 +18,8 @@ class RemoteService {
   }
 }
 //////////////////////////////////////////////////////////
+///
+/// не рабочие (либо я не понимаю как работающие) варианты 
 
 // import 'dart:convert';
 // import 'dart:io';
@@ -45,13 +47,6 @@ class RemoteService {
 //   //   }
 //   // }
 // }
-
-
-
-
-
-
-
 
 
 
@@ -144,7 +139,10 @@ class RemoteService {
 //   //"created_at":"2021-05-02 14:49:42",
 //   //"updated_at":"2022-04-22 04:34:10"
 //   //},
-//   // {"id":"3","user_id":"0","Surname":"Иванов","Name":"Иван","MiddleName":"Иванович","PhoneNumber":"6666666666","Email":"hhhh@gmail.com","City":"Irkutsk","Street":"Igoshina","HouseNumber":"6","Flat":"1","NumberRooms":"2","NumberTenats":"2","Login":"22222","created_at":"2011-12-01 14:53:16","updated_at":"2021-12-21 14:53:16"},
+//   // {"id":"3","user_id":"0","Surname":"Иванов","Name":"Иван","MiddleName":"Иванович",
+//   "PhoneNumber":"6666666666","Email":"hhhh@gmail.com","City":"Irkutsk","Street":"Igoshina",
+//   "HouseNumber":"6","Flat":"1","NumberRooms":"2","NumberTenats":"2","Login":"22222",
+//   "created_at":"2011-12-01 14:53:16","updated_at":"2021-12-21 14:53:16"},
 //   // ]
 //   static Future<List<dynamic>?> getPersonInfo() async {
 //     final response = await http.get(Uri.http(URLS.baseURL, 'clients'));

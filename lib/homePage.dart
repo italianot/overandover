@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:overandover/post.dart';
 import 'history.dart';
@@ -31,7 +29,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HistoryPage()),
+              MaterialPageRoute(builder: (context) => const HistoryPage()),
             );
           },
           icon: const Icon(Icons.view_headline),
@@ -82,7 +80,9 @@ class HomePage extends StatelessWidget {
       const ListTile(
         leading: Icon(Icons.warning, color: Color.fromARGB(255, 219, 145, 8)),
         subtitle: Text(
-          'Рекомендуем передавать показания приборов учета до 25 числа. Показания преданные после 25 числа, не будут приняты к расчету в этом месяце.',
+          'Рекомендуем передавать показания приборов '
+          'учета до 25 числа. Показания преданные после '
+          '25 числа, не будут приняты к расчету в этом месяце.',
           softWrap: true,
         ),
         isThreeLine: true,
@@ -106,7 +106,8 @@ class HomePage extends StatelessWidget {
           barrierDismissible: true,
           builder: (BuildContext context) => AlertDialog(
             title: const Text('Данная функция находится в разработке.'),
-            content: const Text('Данная функция будет добавлена в следующей версии.'),
+            content: const Text(
+                'Данная функция будет добавлена в следующей версии.'),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Ок'),
@@ -151,5 +152,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-

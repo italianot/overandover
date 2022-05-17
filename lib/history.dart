@@ -3,7 +3,6 @@ import 'package:overandover/post.dart';
 import 'homePage.dart';
 import 'rest_api.dart';
 
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
@@ -56,11 +55,11 @@ class _HistoryState extends State<HistoryPage> {
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text('История показаний', style: TextStyle(fontSize: 20)),
+                  child:
+                      Text('История показаний', style: TextStyle(fontSize: 20)),
                 ),
               ],
             ),
-            
             Visibility(
               visible: isLoaded,
               child: ListView.builder(
@@ -130,4 +129,3 @@ class _HistoryState extends State<HistoryPage> {
     );
   }
 }
-

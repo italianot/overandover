@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:overandover/main.dart';
 import 'accountPage.dart';
@@ -121,8 +120,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 barrierDismissible: true,
                 builder: (BuildContext context) => AlertDialog(
                   title: const Text('Напоминание.'),
-                  content: const Text(
-                      '20 числа Вам придет сообщение с напоминанием о необходимости передать показания приборов до 25 числа текущего месяца.'),
+                  content: const Text('20 числа Вам придет сообщение с '
+                      'напоминанием о необходимости передать '
+                      'показания приборов до 25 числа текущего месяца.'),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Ок'),
@@ -137,8 +137,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 barrierDismissible: true,
                 builder: (BuildContext context) => AlertDialog(
                   title: const Text('Напоминание.'),
-                  content: const Text(
-                      'Функция напоминания отключена.'),
+                  content: const Text('Функция напоминания отключена.'),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Ок'),
@@ -148,8 +147,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               );
             }
-
-            //print(state);
           });
         });
   }
