@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:overandover/main.dart';
 
-class RestorePasswordPage extends StatelessWidget {
+class RestorePasswordPage extends StatefulWidget {
   const RestorePasswordPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _RestorePasswordState();
+}
+
+class _RestorePasswordState extends State<RestorePasswordPage> {
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +44,7 @@ class RestorePasswordPage extends StatelessWidget {
           padding:
               const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 30),
           child: TextFormField(
+              controller: myController,
               decoration: const InputDecoration(hintText: 'Введите ваш email'),
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
@@ -52,7 +67,29 @@ class RestorePasswordPage extends StatelessWidget {
               ),
             ),
             child: const Text("Восстановить"),
-            onPressed: () {},
+            onPressed: () {
+              showDialog<String>(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Восстановление пароля.'),
+                  content: Text('На указанный элетронный адрес - '
+                      '(${myController.text}) придет письмо с '
+                      'инструкцией для восстановления пароля'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeScreen()));
+                      },
+                      child: const Text('Ок'),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ],
