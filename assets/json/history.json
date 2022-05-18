@@ -1,0 +1,22 @@
+[
+{   "id":"13",
+    "date":"2022-04-22",
+    "title":"Электронергия",
+    "send_type":"По компьютеру",
+    "indication":"4253",
+    "client_id":"4"},
+{"id":"12","date":"2022-02-21","title":"Электронергия","send_type":"По компьютеру","indication":"7000","client_id":"4"},
+{"id":"11","date":"2022-02-17","title":"Электронергия","send_type":"По компьютеру","indication":"5800","client_id":"4"},
+{"id":"6","date":"2021-12-22","title":"Электронергия","send_type":"По компьютеру","indication":"5600","client_id":"1"},
+{"id":"7","date":"2021-12-22","title":"Электронергия","send_type":"По компьютеру","indication":"7000","client_id":"4"},
+{"id":"8","date":"2021-12-22","title":"Электронергия","send_type":"По компьютеру","indication":"5800","client_id":"4"},
+{"id":"9","date":"2021-12-22","title":"Электронергия","send_type":"По компьютеру","indication":"6000","client_id":"4"},
+{"id":"10","date":"2021-12-22","title":"Электронергия","send_type":"По компьютеру","indication":"1231","client_id":"4"},
+{"id":"1","date":"2021-12-01","title":"Электроэнергия","send_type":"По компьютеру","indication":"4752","client_id":"1"},
+{"id":"3","date":"2021-10-21","title":"Электроэнергия","send_type":"По телефону","indication":"3752","client_id":"1"},
+{"id":"2","date":"2021-10-13","title":"Электроэнергия","send_type":"По телефону","indication":"4700","client_id":"1"},
+{"id":"4","date":"2021-09-17","title":"Электроэнергия","send_type":"По телефону","indication":"4750","client_id":"1"},
+{"id":"5","date":"2021-08-24","title":"Электроэнергия","send_type":"По телефону","indication":"3752","client_id":"1"}
+]
+
+

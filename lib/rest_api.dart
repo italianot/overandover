@@ -2,8 +2,10 @@
 
 import 'package:overandover/post.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:io';
 
-class RemoteService {
+/*class RemoteService {
   Future<List<Post>?> getPosts() async {
     var client = http.Client();
 
@@ -16,7 +18,51 @@ class RemoteService {
       return null;
     }
   }
+}*/
+
+class ApiHistory {
+  final client = HttpClient();
+
+  Future<Post?> createPost(
+      {
+        required String title, required String body}) async {
+        final url = Uri.parse('http://electricity.tealeaf.su/api/history');
+        final parameters = <String, dynamic>{
+        'title': title,
+        'body': body,
+        'userId': 4
+      };
+    final request = await client.postUrl(url);
+    request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
+    request.write(jsonEncode(parameters));
+    final response = await request.close();
+    final jsonStrings = await response.transform(utf8.decoder).toList();
+    final jsonString = jsonStrings.join();
+    final json = jsonDecode(jsonString) as Map<String, dynamic>;
+    final post = Post.fromJson(json);
+    return post;
+  }
+
+  Future<List<Post>> getHistory() async {
+    final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');//подготовка url
+    final request = await client.getUrl(url);//делаем request
+    final response = await request.close();//отправляем в сеть и ждем ответ с помощью await
+    //преобразование ответа в посты
+    final jsonStrings = await response.transform(utf8.decoder).toList();
+    final jsonString = jsonStrings.join();
+    final json = jsonDecode(jsonString) as List<dynamic>;
+
+    final posts = json
+        .map((dynamic e) => Post.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return posts;
+  }
 }
+
+
+
+
+
 //////////////////////////////////////////////////////////
 ///
 /// не рабочие (либо я не понимаю как работающие) варианты 
@@ -50,44 +96,7 @@ class RemoteService {
 
 
 
-//class ApiHistory {
-//   final client = HttpClient();
 
-//   Future<Post?> createPost(
-//       {
-//         required String title, required String body}) async {
-//         final url = Uri.parse('http://electricity.tealeaf.su/api/history');
-//         final parameters = <String, dynamic>{
-//         'title': title,
-//         'body': body,
-//         'userId': 4
-//       };
-//     final request = await client.postUrl(url);
-//     request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
-//     request.write(jsonEncode(parameters));
-//     final response = await request.close();
-//     final jsonStrings = await response.transform(utf8.decoder).toList();
-//     final jsonString = jsonStrings.join();
-//     final json = jsonDecode(jsonString) as Map<String, dynamic>;
-//     final post = Post.fromJson(json);
-//     return post;
-//   }
-
-//   Future<List<Post>> getHistory() async {
-//     final url = Uri.parse('https://electricity.tealeaf.su/api/history');//подготовка url
-//     final request = await client.getUrl(url);//делаем request
-//     final response = await request.close();//отправляем в сеть и ждем ответ с помощью await
-//     //преобразование ответа в посты
-//     final jsonStrings = await response.transform(utf8.decoder).toList();
-//     final jsonString = jsonStrings.join();
-//     final json = jsonDecode(jsonString) as List<dynamic>;
-
-//     final posts = json
-//         .map((dynamic e) => Post.fromJson(e as Map<String, dynamic>))
-//         .toList();
-//     return posts;
-//   }
-// }
 
 
 

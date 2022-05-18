@@ -80,6 +80,7 @@ class HomeScreen extends StatelessWidget {
     );
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter layout',
       home: Scaffold(
         body: ListView(

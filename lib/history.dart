@@ -1,4 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:overandover/history_model.dart';
 import 'package:overandover/post.dart';
 import 'homePage.dart';
 import 'rest_api.dart';
@@ -11,23 +16,42 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
-  List<Post>? posts;
+  final model = HistoryWidgetModel();
+
+  //List<Post>? posts;
   var isLoaded = false;
 
-  @override
-  void initState() {
-    super.initState();
-    getData();
+  List _items = [];
+
+  Future<void> readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/json/history.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["data"];
+    });
   }
 
-  getData() async {
-    posts = await RemoteService().getPosts();
-    if (posts != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
+  // void main() {
+  // final file = File('json/history.json');
+  // final string = file.readAsStringSync();
+  // final data = json.decode(string);
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getData();
+  // }
+
+  // getData() async {
+  //   posts = await RemoteService().getPosts();
+  //   if (posts != null) {
+  //     setState(() {
+  //       isLoaded = true;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -60,69 +84,78 @@ class _HistoryState extends State<HistoryPage> {
                 ),
               ],
             ),
-            Visibility(
+            /*Visibility(
               visible: isLoaded,
-              child: ListView.builder(
-                itemCount: posts?.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      ListTile(
-                        leading: const Icon(Icons.light,
-                            color: Color.fromARGB(255, 219, 145, 8)),
-                        title: Text(posts![index].date),
-                        subtitle: Container(
-                          margin: const EdgeInsets.only(top: 5),
-                          child: Table(
-                            children: [
-                              TableRow(children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(posts![index].title,
-                                      textAlign: TextAlign.left),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: Text(
-                                      "Показания: ${posts![index].indication}",
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ]),
-                              TableRow(children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(
-                                      'Способ: ${posts![index].sendType}',
-                                      textAlign: TextAlign.left),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: Text(
-                                      "Расход: ${posts![index].indication - posts![index - 1].indication}}",
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ]),
-                            ],
-                          ),
+              child:*/
+
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: _items.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ListTile(
+                      leading: const Icon(Icons.light,
+                          color: Color.fromARGB(255, 219, 145, 8)),
+                      title:
+                          Text(_items[index]["title"] /*posts![index].date*/),
+                      subtitle: Container(
+                        margin: const EdgeInsets.only(top: 5),
+                        child: Table(
+                          children: [
+                            TableRow(children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Text(
+                                    _items[index]
+                                        ["title"] /* posts![index].title*/,
+                                    textAlign: TextAlign.left),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 5),
+                                child: Text(
+                                    _items[index][
+                                        "id"] /*"Показания: ${posts![index].indication}"*/,
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Text(
+                                    _items[index][
+                                        "date"] /*'Способ: ${posts![index].sendType}'*/,
+                                    textAlign: TextAlign.left),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 5),
+                                child: Text(
+                                    '' /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ]),
+                          ],
                         ),
-                        isThreeLine: true,
-                        dense: false,
                       ),
-                    ],
-                  );
-                },
-              ),
-              replacement: const Center(
+                      isThreeLine: true,
+                      dense: false,
+                    ),
+                  ],
+                );
+              },
+            ),
+            /*replacement: const Center(
                 child: CircularProgressIndicator(),
               ),
-            ),
+            ),*/
           ],
         ),
       ),

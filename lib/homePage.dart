@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final post = ModalRoute.of(context)!.settings.arguments as Post;
+    //final post = ModalRoute.of(context)!.settings.arguments as Post;
     Widget header = Row(children: <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: IconButton(
           onPressed: () {
+            //readJson();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const HistoryPage()),
@@ -152,3 +153,23 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+/*class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  List _items = [];
+
+  Future<void> readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/json/history.json');
+    final data = await json.decode(response);
+    setState(() {
+      _items = data["data"];
+    });
+  }
+}*/
