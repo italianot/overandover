@@ -1,24 +1,9 @@
-// ПОЛУРАБОЧИЙ ВАРИАНТ ///////////////////////////////////
-
 import 'package:overandover/post.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 
-/*class RemoteService {
-  Future<List<Post>?> getPosts() async {
-    var client = http.Client();
 
-    var uri = Uri.parse("http://electricity.tealeaf.su/api/history");
-    var response = await client.get(uri);
-    if (response.statusCode == 200) {
-      var json = response.body;
-      return postFromJson(json);
-    } else {
-      return null;
-    }
-  }
-}*/
 
 class ApiHistory {
   final client = HttpClient();
@@ -26,11 +11,11 @@ class ApiHistory {
   Future<Post?> createPost(
       {
         required String title, required String body}) async {
-        final url = Uri.parse('http://electricity.tealeaf.su/api/history');
+        final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
         final parameters = <String, dynamic>{
         'title': title,
         'body': body,
-        'userId': 4
+        'userId': 500
       };
     final request = await client.postUrl(url);
     request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
@@ -46,7 +31,7 @@ class ApiHistory {
   Future<List<Post>> getHistory() async {
     final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');//подготовка url
     final request = await client.getUrl(url);//делаем request
-    final response = await request.close();//отправляем в сеть и ждем ответ с помощью await
+    final response = await request.close();//отправляем в сеть и ждем ответ 
     //преобразование ответа в посты
     final jsonStrings = await response.transform(utf8.decoder).toList();
     final jsonString = jsonStrings.join();
@@ -63,9 +48,7 @@ class ApiHistory {
 
 
 
-//////////////////////////////////////////////////////////
-///
-/// не рабочие (либо я не понимаю как работающие) варианты 
+ 
 
 // import 'dart:convert';
 // import 'dart:io';

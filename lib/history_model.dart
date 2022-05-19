@@ -2,22 +2,31 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:overandover/post.dart';
+import 'package:overandover/rest_api.dart';
 
 class HistoryWidgetModel extends ChangeNotifier {
-  final _posts = <Post>[];
+  final apiHistory = ApiHistory();
+  var _posts = <Post>[];
   List<Post> get posts => _posts;
 
-  void reloadPosts() {}
-  void createPosts() {}
+  Future<void> reloadPosts() async {
+    final posts = await apiHistory.getHistory();
+    _posts += posts;
+    notifyListeners();
+  }
+
+  Future<void> createPosts() async {
+    final posts = await apiHistory.createPost(title: "fsfsff", body: "wfwg33");
+  }
 }
 
 class HistoryModelProvider extends InheritedNotifier {
-  final HistoryModelProvider model;
+  final HistoryWidgetModel model;
   const HistoryModelProvider({
     Key? key,
     required this.model,
     required Widget child,
-  }) : super(key: key, child: child);
+  }) : super(key: key, notifier: model, child: child);
 
   static HistoryModelProvider? watch(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<HistoryModelProvider>();
