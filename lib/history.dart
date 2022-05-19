@@ -16,7 +16,7 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
-  final model = HistoryWidgetModel();
+  final model = HistoryWidgetModel();//////////////////////
 
   //List<Post>? posts;
   List _items = [];

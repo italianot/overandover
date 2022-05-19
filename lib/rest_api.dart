@@ -1,24 +1,21 @@
 import 'package:overandover/post.dart';
-//import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
-
-
 
 class ApiHistory {
   final client = HttpClient();
 
   Future<Post?> createPost(
-      {
-        required String title, required String body}) async {
-        final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
-        final parameters = <String, dynamic>{
-        'title': title,
-        'body': body,
-        'userId': 500
-      };
+      {required String title, required String body}) async {
+    final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
+    final parameters = <String, dynamic>{
+      'title': title,
+      'body': body,
+      'userId': 500
+    };
     final request = await client.postUrl(url);
-    request.headers.set('Content-type', 'application/json; charset=UTF-8');//ожидаемые header'ы
+    request.headers.set(
+        'Content-type', 'application/json; charset=UTF-8'); //ожидаемые header'ы
     request.write(jsonEncode(parameters));
     final response = await request.close();
     final jsonStrings = await response.transform(utf8.decoder).toList();
@@ -29,9 +26,10 @@ class ApiHistory {
   }
 
   Future<List<Post>> getHistory() async {
-    final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');//подготовка url
-    final request = await client.getUrl(url);//делаем request
-    final response = await request.close();//отправляем в сеть и ждем ответ 
+    final url = Uri.parse(
+        'https://jsonplaceholder.typicode.com/posts'); //подготовка url
+    final request = await client.getUrl(url); //делаем request
+    final response = await request.close(); //отправляем в сеть и ждем ответ
     //преобразование ответа в посты
     final jsonStrings = await response.transform(utf8.decoder).toList();
     final jsonString = jsonStrings.join();
@@ -42,13 +40,9 @@ class ApiHistory {
         .toList();
     return posts;
   }
+
+  
 }
-
-
-
-
-
- 
 
 // import 'dart:convert';
 // import 'dart:io';
@@ -76,14 +70,6 @@ class ApiHistory {
 //   //   }
 //   // }
 // }
-
-
-
-
-
-
-
-
 
 // class ApiService {
 //   // RESPONSE JSON :
@@ -170,7 +156,7 @@ class ApiHistory {
 //   // },
 //   // ]
 //   static Future<List<dynamic>?> getHistory() async {
-//     final response = await http.get(Uri.http(URLS.baseURL, 'history'));  
+//     final response = await http.get(Uri.http(URLS.baseURL, 'history'));
 //     if (response.statusCode == 200) {
 //       return json.decode(response.body);
 //     } else {
