@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:overandover/post.dart';
 import 'package:overandover/rest_api.dart';
 
+void test() {
+  print('!Hello world');
+}
+
 class HistoryWidgetModel extends ChangeNotifier {
   final apiHistory = ApiHistory();
   var _posts = <Post>[];
@@ -13,13 +17,14 @@ class HistoryWidgetModel extends ChangeNotifier {
     final posts = await apiHistory.getHistory();
     _posts += posts;
     notifyListeners();
+    test();
   }
 
   Future<void> createPosts() async {
     final posts = await apiHistory.createPost(title: "fsfsff", body: "wfwg33");
   }
 }
-
+///////////// где то здесь
 class HistoryModelProvider extends InheritedNotifier {
   final HistoryWidgetModel model;
   const HistoryModelProvider({
