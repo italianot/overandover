@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:overandover/history_model.dart';
 import 'homePage.dart';
+import 'package:dio/dio.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -16,10 +17,18 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
-  final model = HistoryWidgetModel();//////////////////////
+  //final model = HistoryWidgetModel(); //////////
+  //String ID='';
+  //String title='';
+  late Response response;
+  Dio dio = Dio();
 
+  bool error = false; //for error status
+  bool loading = false; //for data featching status
+  String errmsg = ""; //to assing any error message from API/runtime
+  var apidata; //for decoded JSON data
   //List<Post>? posts;
-  List _items = [];
+  //List _items = [];
 
   /*Future<void> readJson() async {
     final String response =
@@ -52,53 +61,94 @@ class _HistoryState extends State<HistoryPage> {
   // }
 
   @override
+  void initState() {
+    getData(); //fetching data
+    super.initState();
+  }
+
+  getData() async {
+    setState(() {
+      loading = true; //make loading true to show progressindicator
+    });
+
+    //String url = "http://electricity.tealeaf.su/api/history";
+    //don't use "http://localhost/" use local IP or actual live URL
+
+    
+    Response response = await dio.get('http://electricity.tealeaf.su/api/history');
+    apidata = response.data; //get JSON decoded data from response
+
+    print(apidata); //printing the JSON recieved
+
+    if (response.statusCode == 200) {
+      //fetch successful
+      if (apidata["error"]) {
+        //Check if there is error given on JSON
+        error = true;
+        errmsg = apidata["msg"]; //error message from JSON
+      }
+    } else {
+      error = true;
+      errmsg = "Error while fetching data.";
+    }
+
+    loading = false;
+    setState(() {}); //refresh UI
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter layout',
-      home: Scaffold(
-          body:  HistoryModelProvider(
-            model: model,
-            child: 
-              Column(children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: _ReloadButton(),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: _CreateButton(),
-        ),
-        Row(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
+        title: 'Flutter layout',
+        home: Scaffold(
+          body: Column(
+            children: <Widget>[
+              Row(children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                          );
+                        },
+                        icon: const Icon(Icons.arrow_back)),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child:
+                      Text('История показаний', style: TextStyle(fontSize: 20)),
+                ),
+              ]),
+              Container(
+           alignment: Alignment.topCenter,
+           padding: EdgeInsets.all(20),
+            child: loading?
+             CircularProgressIndicator(): //if loading == true, show progress indicator
+             Container( //if there is any error, show error message
+               child:error?Text("Error: $errmsg"):
+               Column(  //if everything fine, show the JSON as widget
+                  children:apidata["data"].map<Widget>((data){
+                      return Card(
+                         child: ListTile( 
+                               title: Text(data["id"]),
+                               subtitle: Text(data["date"]),
+                         ),
                       );
-                    },
-                    icon: const Icon(Icons.arrow_back)),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text('История показаний', style: TextStyle(fontSize: 20)),
-            ),
-          ],
-        ),
-        const _PostWidget(),
-      ])),
-    ),
-    );
+                  }).toList(),
+               )))
+            ],
+          ),
+        ));
   }
 }
 
-class _ReloadButton extends StatelessWidget {
+/*class _ReloadButton extends StatelessWidget {
   const _ReloadButton({Key? key}) : super(key: key);
 
   @override
@@ -108,9 +158,9 @@ class _ReloadButton extends StatelessWidget {
             HistoryModelProvider.read(context)?.model.reloadPosts()),
         child: const Text("Обновить данные"));
   }
-}
+}*/
 
-class _CreateButton extends StatelessWidget {
+/*class _CreateButton extends StatelessWidget {
   const _CreateButton({Key? key}) : super(key: key);
 
   @override
@@ -120,9 +170,9 @@ class _CreateButton extends StatelessWidget {
             HistoryModelProvider.watch(context)?.model.createPosts()),
         child: const Text("Передать показания"));
   }
-}
+}*/
 
-class _PostWidget extends StatelessWidget {
+/*class _PostWidget extends StatelessWidget {
   const _PostWidget({Key? key}) : super(key: key);
 
   @override
@@ -143,7 +193,7 @@ class _PostRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final post = HistoryModelProvider.watch(context)!.model.posts[index];
+    //final post = HistoryModelProvider.watch(context)!.model.posts[index];
 
     // return Visibility(
     //   visible: isLoaded,
@@ -208,3 +258,4 @@ class _PostRowWidget extends StatelessWidget {
     // );
   }
 }
+*/
