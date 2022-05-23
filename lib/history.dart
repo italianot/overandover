@@ -70,7 +70,6 @@ class _HistoryState extends State<HistoryPage> {
     Response response =
         await dio.get('http://electricity.tealeaf.su/api/history');
     apidata = response.data; //get JSON decoded data from response
-
     print(apidata); //printing the JSON recieved
 
     loading = false;
@@ -104,15 +103,91 @@ class _HistoryState extends State<HistoryPage> {
               child: Text('История показаний', style: TextStyle(fontSize: 20)),
             ),
           ]),
+          
+          Expanded(
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              children: <Widget>[
+                Container(
+                  child: loading
+                      ? const CircularProgressIndicator()
+                      : Column(
+                          children: apidata["data"].map<Widget>((data) {
+                            //print(data);
+          
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ListTile(
+                                leading: const Icon(Icons.light,
+                                    color: Color.fromARGB(255, 219, 145, 8)),
+                                title: Text(
+                                    "${data["date"].toString()} от пользователя: ${data["client_id"].toString()}"),
+                                subtitle: Container(
+                                  margin: const EdgeInsets.only(top: 5),
+                                  child: Table(
+                                    children: [
+                                      TableRow(children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Text(data["title"].toString(),
+                                              textAlign: TextAlign.left),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, top: 5),
+                                          child: Text(
+                                              "Показания: ${data["indication"].toString()}",
+                                              textAlign: TextAlign.left,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                      ]),
+                                      TableRow(children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Text(
+                                              'Способ: ${data["send_type"].toString()}',
+                                              textAlign: TextAlign.left),
+                                        ),
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.only(left: 10, top: 5),
+                                          child: Text(
+                                              'Расход: 323'
+          
+                                              /// как правильно счтать расход? сперва разобраться с 1 пользователем
+          
+                                              /*"Расход: ${}"*/ //  ???
+                                              /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                      ]),
+                                    ],
+                                  ),
+                                ),
+                                isThreeLine: true,
+                                dense: false,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                ),
+              ],
+            ),
+          ),
 
-          /// где должна быть фунция отвечающая за скролл?
-          /// как выводить данные только по одному пользователю?
-
-          Container(
+          /*Container(
             child: loading
                 ? const CircularProgressIndicator()
                 : Column(
                     children: apidata["data"].map<Widget>((data) {
+                      //print(data);
+
+                      
+                      
                       return ListTile(
                         leading: const Icon(Icons.light,
                             color: Color.fromARGB(255, 219, 145, 8)),
@@ -132,7 +207,7 @@ class _HistoryState extends State<HistoryPage> {
                                   padding:
                                       const EdgeInsets.only(left: 10, top: 5),
                                   child: Text(
-                                      "Показания: ${data["indication"]["1"].toString()}",
+                                      "Показания: ${data["indication"].toString()}",
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold)),
@@ -150,7 +225,7 @@ class _HistoryState extends State<HistoryPage> {
                                   child: Text(
                                       'Расход: 323'
 
-                                      /// как правильно счтать расход?
+                                      /// как правильно счтать расход? сперва разобраться с 1 пользователем
 
                                       /*"Расход: ${}"*/ //  ???
                                       /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
@@ -167,26 +242,8 @@ class _HistoryState extends State<HistoryPage> {
                       );
                     }).toList(),
                   ),
-          )
-        ]))
-
-        //       Container(
-        //           alignment: Alignment.topCenter,
-        //           padding: const EdgeInsets.all(20),
-        //           child: Column(
-        //             children: apidata["data"].map<Widget>((data) {
-        //               return Card(
-        //                 child: ListTile(
-        //                   title: Text(data["id"].toString()),
-        //                   subtitle: Text(data["date"].toString()),
-        //                 ),
-        //               );
-        //             }).toList(),
-        //           ))
-        //     ]),
-        //   ),
-        // );
-        );
+          ),*/
+        ])));
   }
 }
 
@@ -302,4 +359,6 @@ class _HistoryState extends State<HistoryPage> {
     // );
   }
 }*/
+
+
 
