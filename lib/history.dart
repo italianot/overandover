@@ -1,11 +1,4 @@
-//import 'dart:convert';
-//import 'dart:io';
-//import 'package:flutter/services.dart';
-////import 'package:overandover/post.dart';
-//import 'rest_api.dart';
-
 import 'package:flutter/material.dart';
-import 'package:overandover/history_model.dart';
 import 'homePage.dart';
 import 'package:dio/dio.dart';
 
@@ -22,39 +15,6 @@ class _HistoryState extends State<HistoryPage> {
 
   bool loading = false; //for data featching status
   var apidata; //for decoded JSON data
-
-  //List<Post>? posts;
-  //List _items = [];
-
-  /*Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/json/history.json');
-    final data = await json.decode(response);
-    setState(() {
-      _items = data["data"];
-    });
-  }*/
-
-  // void main() {
-  // final file = File('json/history.json');
-  // final string = file.readAsStringSync();
-  // final data = json.decode(string);
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getData();
-  // }
-
-  // getData() async {
-  //   posts = await RemoteService().getPosts();
-  //   if (posts != null) {
-  //     setState(() {
-  //       isLoaded = true;
-  //     });
-  //   }
-  // }
 
   @override
   void initState() {
@@ -103,7 +63,6 @@ class _HistoryState extends State<HistoryPage> {
               child: Text('История показаний', style: TextStyle(fontSize: 20)),
             ),
           ]),
-          
           Expanded(
             child: ListView(
               scrollDirection: Axis.vertical,
@@ -114,8 +73,6 @@ class _HistoryState extends State<HistoryPage> {
                       ? const CircularProgressIndicator()
                       : Column(
                           children: apidata["data"].map<Widget>((data) {
-                            //print(data);
-          
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
@@ -129,7 +86,8 @@ class _HistoryState extends State<HistoryPage> {
                                     children: [
                                       TableRow(children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5),
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
                                           child: Text(data["title"].toString(),
                                               textAlign: TextAlign.left),
                                         ),
@@ -145,7 +103,8 @@ class _HistoryState extends State<HistoryPage> {
                                       ]),
                                       TableRow(children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 5),
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
                                           child: Text(
                                               'Способ: ${data["send_type"].toString()}',
                                               textAlign: TextAlign.left),
@@ -155,9 +114,8 @@ class _HistoryState extends State<HistoryPage> {
                                               EdgeInsets.only(left: 10, top: 5),
                                           child: Text(
                                               'Расход: 323'
-          
+
                                               /// как правильно счтать расход? сперва разобраться с 1 пользователем
-          
                                               /*"Расход: ${}"*/ //  ???
                                               /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
                                               textAlign: TextAlign.left,
@@ -178,71 +136,6 @@ class _HistoryState extends State<HistoryPage> {
               ],
             ),
           ),
-
-          /*Container(
-            child: loading
-                ? const CircularProgressIndicator()
-                : Column(
-                    children: apidata["data"].map<Widget>((data) {
-                      //print(data);
-
-                      
-                      
-                      return ListTile(
-                        leading: const Icon(Icons.light,
-                            color: Color.fromARGB(255, 219, 145, 8)),
-                        title: Text(
-                            "${data["date"].toString()} от пользователя: ${data["client_id"].toString()}"),
-                        subtitle: Container(
-                          margin: const EdgeInsets.only(top: 5),
-                          child: Table(
-                            children: [
-                              TableRow(children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(data["title"].toString(),
-                                      textAlign: TextAlign.left),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: Text(
-                                      "Показания: ${data["indication"].toString()}",
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ]),
-                              TableRow(children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text(
-                                      'Способ: ${data["send_type"].toString()}',
-                                      textAlign: TextAlign.left),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 10, top: 5),
-                                  child: Text(
-                                      'Расход: 323'
-
-                                      /// как правильно счтать расход? сперва разобраться с 1 пользователем
-
-                                      /*"Расход: ${}"*/ //  ???
-                                      /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ]),
-                            ],
-                          ),
-                        ),
-                        isThreeLine: true,
-                        dense: false,
-                      );
-                    }).toList(),
-                  ),
-          ),*/
         ])));
   }
 }
@@ -359,6 +252,3 @@ class _HistoryState extends State<HistoryPage> {
     // );
   }
 }*/
-
-
-
