@@ -13,28 +13,24 @@ String postToJson(List<Post> data) =>
 class Post {
   Post({
     required this.userId,
-    required this.id,
     required this.title,
     required this.body,
-    /*required this.id,
+    required this.id,
     required this.date,
-    required this.title,
     required this.sendType,
     required this.indication,
-    required this.clientId,*/
+    required this.clientId,
   });
 
   final int userId;
-  final int id;
   final String title;
   final String body;
 
-  /*final String id;
+  final String id;
   final String date;
-  final String title;
   final String sendType;
   final int indication;
-  final String clientId;*/
+  final String clientId;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
   /*Post(

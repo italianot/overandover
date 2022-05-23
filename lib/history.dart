@@ -17,16 +17,12 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
-  //final model = HistoryWidgetModel(); //////////
-  //String ID='';
-  //String title='';
   late Response response;
   Dio dio = Dio();
 
-  bool error = false; //for error status
   bool loading = false; //for data featching status
-  String errmsg = ""; //to assing any error message from API/runtime
   var apidata; //for decoded JSON data
+
   //List<Post>? posts;
   //List _items = [];
 
@@ -68,29 +64,14 @@ class _HistoryState extends State<HistoryPage> {
 
   getData() async {
     setState(() {
-      loading = true; //make loading true to show progressindicator
+      loading = true; //make loading true to show progress indicator
     });
 
-    //String url = "http://electricity.tealeaf.su/api/history";
-    //don't use "http://localhost/" use local IP or actual live URL
-
-    
-    Response response = await dio.get('http://electricity.tealeaf.su/api/history');
+    Response response =
+        await dio.get('http://electricity.tealeaf.su/api/history');
     apidata = response.data; //get JSON decoded data from response
 
     print(apidata); //printing the JSON recieved
-
-    if (response.statusCode == 200) {
-      //fetch successful
-      if (apidata["error"]) {
-        //Check if there is error given on JSON
-        error = true;
-        errmsg = apidata["msg"]; //error message from JSON
-      }
-    } else {
-      error = true;
-      errmsg = "Error while fetching data.";
-    }
 
     loading = false;
     setState(() {}); //refresh UI
@@ -101,50 +82,111 @@ class _HistoryState extends State<HistoryPage> {
     return MaterialApp(
         title: 'Flutter layout',
         home: Scaffold(
-          body: Column(
-            children: <Widget>[
-              Row(children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_back)),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child:
-                      Text('История показаний', style: TextStyle(fontSize: 20)),
-                ),
-              ]),
-              Container(
-           alignment: Alignment.topCenter,
-           padding: EdgeInsets.all(20),
-            child: loading?
-             CircularProgressIndicator(): //if loading == true, show progress indicator
-             Container( //if there is any error, show error message
-               child:error?Text("Error: $errmsg"):
-               Column(  //if everything fine, show the JSON as widget
-                  children:apidata["data"].map<Widget>((data){
-                      return Card(
-                         child: ListTile( 
-                               title: Text(data["id"]),
-                               subtitle: Text(data["date"]),
-                         ),
+            body: Column(children: <Widget>[
+          Row(children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
                       );
-                  }).toList(),
-               )))
-            ],
-          ),
-        ));
+                    },
+                    icon: const Icon(Icons.arrow_back)),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text('История показаний', style: TextStyle(fontSize: 20)),
+            ),
+          ]),
+
+          /// где должна быть фунция отвечающая за скролл?
+          /// как выводить данные только по одному пользователю?
+
+          Container(
+            child: loading
+                ? const CircularProgressIndicator()
+                : Column(
+                    children: apidata["data"].map<Widget>((data) {
+                      return ListTile(
+                        leading: const Icon(Icons.light,
+                            color: Color.fromARGB(255, 219, 145, 8)),
+                        title: Text(
+                            "${data["date"].toString()} от пользователя: ${data["client_id"].toString()}"),
+                        subtitle: Container(
+                          margin: const EdgeInsets.only(top: 5),
+                          child: Table(
+                            children: [
+                              TableRow(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(data["title"].toString(),
+                                      textAlign: TextAlign.left),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 10, top: 5),
+                                  child: Text(
+                                      "Показания: ${data["indication"]["1"].toString()}",
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                      'Способ: ${data["send_type"].toString()}',
+                                      textAlign: TextAlign.left),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 10, top: 5),
+                                  child: Text(
+                                      'Расход: 323'
+
+                                      /// как правильно счтать расход?
+
+                                      /*"Расход: ${}"*/ //  ???
+                                      /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ]),
+                            ],
+                          ),
+                        ),
+                        isThreeLine: true,
+                        dense: false,
+                      );
+                    }).toList(),
+                  ),
+          )
+        ]))
+
+        //       Container(
+        //           alignment: Alignment.topCenter,
+        //           padding: const EdgeInsets.all(20),
+        //           child: Column(
+        //             children: apidata["data"].map<Widget>((data) {
+        //               return Card(
+        //                 child: ListTile(
+        //                   title: Text(data["id"].toString()),
+        //                   subtitle: Text(data["date"].toString()),
+        //                 ),
+        //               );
+        //             }).toList(),
+        //           ))
+        //     ]),
+        //   ),
+        // );
+        );
   }
 }
 
@@ -184,9 +226,9 @@ class _HistoryState extends State<HistoryPage> {
       },
     );
   }
-}
+}*/
 
-class _PostRowWidget extends StatelessWidget {
+/*class _PostRowWidget extends StatelessWidget {
   //var isLoaded = false;
   final int index;
   const _PostRowWidget({Key? key, required this.index}) : super(key: key);
@@ -205,6 +247,8 @@ class _PostRowWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+
+
         ListTile(
           leading:
               const Icon(Icons.light, color: Color.fromARGB(255, 219, 145, 8)),
@@ -257,5 +301,5 @@ class _PostRowWidget extends StatelessWidget {
     //   ),
     // );
   }
-}
-*/
+}*/
+
