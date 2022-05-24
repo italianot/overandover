@@ -10,14 +10,20 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
-  var a = [];
-  var ai = [];
+  List<dynamic> ai = [
+    // {'id'},
+    // {'date'},
+    // {'send_type'},
+    // {'indication'},
+    // {'client_id'},
+    // {'title'},
+    // {'rashod'}
+  ];
+
+  List<int> indications = []; //array for certain user's indications
+  List<int> usage = []; // array for certain user's usage
   bool loading = false; //for data featching status
-
-  late Response response;
   Dio dio = Dio();
-
-  var apidata; //for decoded JSON data
 
   @override
   void initState() {
@@ -32,19 +38,35 @@ class _HistoryState extends State<HistoryPage> {
 
     Response response =
         await dio.get('http://electricity.tealeaf.su/api/history');
-    apidata = response.data; //get JSON decoded data from response
-    print(apidata);
-    
+    var apidata = response.data; //get JSON decoded data from response
 
-    a = apidata["data"];
-
-    for (int i = 0; i < a.length; i++) {
-      if (a[i]['client_id'] == 4) {
-        ai.add(a[i]);
-        print(a[i]);
+    for (int i = 0; i < apidata["data"].length; i++) {
+      if (apidata["data"][i]['client_id'] == 4) {
+        ai.add(apidata["data"][i]);
+        print(apidata["data"][i]);
       }
     }
-    //print(a);
+
+    ai = List.of(ai.reversed);
+    print(ai);
+
+    for (int i = 0; i < ai.length; i++) {
+      int ras = int.parse(ai[i]['indication'].toString());
+      indications.add(ras);
+    }
+    print(indications);
+
+    for (int i = 0; i < indications.length; i++) {
+      if (i == indications.length-1) {
+        int ras = indications[i] - 0;
+        usage.add(ras);
+      } else {
+        int ras = indications[i] - indications[i + 1];
+        usage.add(ras);
+      }
+    }
+    print(usage);
+
     loading = false;
     setState(() {}); //refresh UI
   }
@@ -84,13 +106,15 @@ class _HistoryState extends State<HistoryPage> {
                 Container(
                   child: loading
                       ? const CircularProgressIndicator()
+
+                      ///  перенести выше??
                       : Column(
                           children: ai.map<Widget>((data) {
-                            //apidata['data']
-                            // if (data["client_id"] == 4) {
+
+                            // int i;
+                            // for (i = 0; i < usage.length-1; i++) {
+                            //   print(i);
                             // }
-                            //print(data["client_id"] == 4);
-                            //print(data);
 
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -128,17 +152,14 @@ class _HistoryState extends State<HistoryPage> {
                                               'Способ: ${data["send_type"].toString()}',
                                               textAlign: TextAlign.left),
                                         ),
-                                        const Padding(
-                                          padding:
-                                              EdgeInsets.only(left: 10, top: 5),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, top: 5),
                                           child: Text(
-                                              'Расход: 323'
+                                              'Расход: ${(usage)}',
 
-                                              /// как правильно счтать расход? сперва разобраться с 1 пользователем
-                                              /*"Расход: ${}"*/ //  ???
-                                              /*"Расход: ${posts![index].indication - posts![index - 1].indication}}"*/,
                                               textAlign: TextAlign.left,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.bold)),
                                         ),
                                       ]),

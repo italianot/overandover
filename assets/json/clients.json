@@ -1,0 +1,13 @@
+[
+{"type":"header","version":"5.1.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"electricitycompany"},
+{"type":"table","name":"clients","database":"electricitycompany","data":
+[
+{"id":"6","user_id":"0","Surname":"Алексеев","Name":"Алексей","MiddleName":"Алексеевич","PhoneNumber":"66666666777","Email":"ttt@gmail.com","City":"Irkutsk","Street":"Orlova","HouseNumber":"63","Flat":"4","NumberRooms":"2","NumberTenats":"2","Login":"555555","created_at":"2021-05-02 14:49:42","updated_at":"2021-12-27 14:56:59"},
+{"id":"5","user_id":"0","Surname":"Сергеев","Name":"Сергей","MiddleName":"Сергеевич","PhoneNumber":"8888888888","Email":"sss@gmail.com","City":"Irkutsk","Street":"Paveletskaya","HouseNumber":"5","Flat":"1","NumberRooms":"1","NumberTenats":"1","Login":"44444","created_at":null,"updated_at":null},
+{"id":"4","user_id":"2","Surname":"Романов","Name":"Игорь","MiddleName":"Романович","PhoneNumber":"77777777777777","Email":"llll@gmail.com","City":"Irkutsk","Street":"Uritskogo","HouseNumber":"8","Flat":"2","NumberRooms":"1","NumberTenats":"1","Login":"3333333","created_at":"2021-05-02 14:49:42","updated_at":"2022-04-22 04:34:10"},
+{"id":"3","user_id":"0","Surname":"Иванов","Name":"Иван","MiddleName":"Иванович","PhoneNumber":"6666666666","Email":"hhhh@gmail.com","City":"Irkutsk","Street":"Igoshina","HouseNumber":"6","Flat":"1","NumberRooms":"2","NumberTenats":"2","Login":"22222","created_at":"2011-12-01 14:53:16","updated_at":"2021-12-21 14:53:16"},
+{"id":"2","user_id":"1","Surname":"Петров","Name":"Петр","MiddleName":"Петрович","PhoneNumber":"99999999999","Email":"kkkk@gmail.com","City":"Irkutsk","Street":"Lenina","HouseNumber":"4","Flat":"1","NumberRooms":"1","NumberTenats":"1","Login":"111111","created_at":"2021-05-02 14:49:42","updated_at":"2021-12-08 14:49:42"}
+]
+}
+]
