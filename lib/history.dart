@@ -10,10 +10,13 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
+  var a = [];
+  var ai = [];
+  bool loading = false; //for data featching status
+
   late Response response;
   Dio dio = Dio();
 
-  bool loading = false; //for data featching status
   var apidata; //for decoded JSON data
 
   @override
@@ -30,8 +33,18 @@ class _HistoryState extends State<HistoryPage> {
     Response response =
         await dio.get('http://electricity.tealeaf.su/api/history');
     apidata = response.data; //get JSON decoded data from response
-    print(apidata); //printing the JSON recieved
+    print(apidata);
+    
 
+    a = apidata["data"];
+
+    for (int i = 0; i < a.length; i++) {
+      if (a[i]['client_id'] == 4) {
+        ai.add(a[i]);
+        print(a[i]);
+      }
+    }
+    //print(a);
     loading = false;
     setState(() {}); //refresh UI
   }
@@ -72,13 +85,12 @@ class _HistoryState extends State<HistoryPage> {
                   child: loading
                       ? const CircularProgressIndicator()
                       : Column(
-                          children: apidata["data"].map<Widget>((data) {
+                          children: ai.map<Widget>((data) {
+                            //apidata['data']
                             // if (data["client_id"] == 4) {
-
                             // }
-
-                            print(data["client_id"] == 4);
-                            print(data);
+                            //print(data["client_id"] == 4);
+                            //print(data);
 
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
