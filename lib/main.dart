@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'accountPage.dart';
 import 'history.dart';
@@ -6,16 +7,16 @@ import 'restorePasswordPage.dart';
 import 'homePage.dart';
 
 void main() => runApp(MaterialApp(
-initialRoute: '/',
-routes: {
-'/': (contex) => MyApp(),
-'/homePage': (contex)=>HomePage(),
-'/restorePage': (contex) => RestorePasswordPage(),
-'/menuPage': (contex)=> MenuPage(),
-'/accountPage':(contex)=>AccountPage(),
-'/historyPage': (contex)=>HistoryPage(),
-},
-));
+      initialRoute: '/',
+      routes: {
+        '/': (contex) => MyApp(),
+        '/homePage': (contex) => HomePage(),
+        '/restorePage': (contex) => RestorePasswordPage(),
+        '/menuPage': (contex) => MenuPage(),
+        '/accountPage': (contex) => AccountPage(),
+        '/historyPage': (contex) => HistoryPage(),
+      },
+    ));
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _HomeScreen extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    /*void auth(context) {
+    void auth(context) {
       if (login == 'login' && password == 'pass') {
         print(login);
         Navigator.push(
@@ -41,7 +42,16 @@ class _HomeScreen extends State<MyApp> {
       } else {
         print('daaa');
       }
-    }*/
+    }
+    // void postDATA() async {
+    //   Dio dio = Dio();
+    //   final response =
+    //       await dio.post("http://electricity.tealeaf.su/login", data: {
+    //     "email": "m@mail.ru", //login
+    //     "password": "123", //password
+    //   });
+    //   print(response);
+    // }
 
     Widget inputSection = Column(
       children: <Widget>[
@@ -87,6 +97,8 @@ class _HomeScreen extends State<MyApp> {
             ),
             child: const Text("Войти"),
             onPressed: () {
+              //postDATA();
+
               if (login == 'login' && password == 'pass') {
                 print(login);
                 Navigator.pushNamed(context, '/homePage');

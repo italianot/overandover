@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'homePage.dart';
 import 'package:dio/dio.dart';
-
+Dio dio = Dio();
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
@@ -14,7 +14,7 @@ class _HistoryState extends State<HistoryPage> {
   List<int> indications = []; //array for certain user's indications
   List<int> usage = []; // array for certain user's usage
   bool loading = false; //for data featching status
-  Dio dio = Dio();
+  
 
   @override
   void initState() {
