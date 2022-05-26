@@ -10,16 +10,7 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryState extends State<HistoryPage> {
-  List<dynamic> ai = [
-    // {'id'},
-    // {'date'},
-    // {'send_type'},
-    // {'indication'},
-    // {'client_id'},
-    // {'title'},
-    // {'rashod'}
-  ];
-
+  List<dynamic> ai = [];
   List<int> indications = []; //array for certain user's indications
   List<int> usage = []; // array for certain user's usage
   bool loading = false; //for data featching status
@@ -57,7 +48,7 @@ class _HistoryState extends State<HistoryPage> {
     print(indications);
 
     for (int i = 0; i < indications.length; i++) {
-      if (i == indications.length-1) {
+      if (i == indications.length - 1) {
         int ras = indications[i] - 0;
         usage.add(ras);
       } else {
@@ -84,11 +75,8 @@ class _HistoryState extends State<HistoryPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                      );
+                      Navigator.pushNamed(context, '/homePage');
+                      
                     },
                     icon: const Icon(Icons.arrow_back)),
               ),
@@ -98,6 +86,9 @@ class _HistoryState extends State<HistoryPage> {
               child: Text('История показаний', style: TextStyle(fontSize: 20)),
             ),
           ]),
+          
+          
+          
           Expanded(
             child: ListView(
               scrollDirection: Axis.vertical,
@@ -110,7 +101,6 @@ class _HistoryState extends State<HistoryPage> {
                       ///  перенести выше??
                       : Column(
                           children: ai.map<Widget>((data) {
-
                             // int i;
                             // for (i = 0; i < usage.length-1; i++) {
                             //   print(i);
@@ -126,6 +116,11 @@ class _HistoryState extends State<HistoryPage> {
                                 subtitle: Container(
                                   margin: const EdgeInsets.only(top: 5),
                                   child: Table(
+                                    border: const TableBorder(
+                                        verticalInside: BorderSide(
+                                            width: 1,
+                                            color: Colors.blue,
+                                            style: BorderStyle.solid)),
                                     children: [
                                       TableRow(children: [
                                         Padding(
@@ -155,9 +150,7 @@ class _HistoryState extends State<HistoryPage> {
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10, top: 5),
-                                          child: Text(
-                                              'Расход: ${(usage)}',
-
+                                          child: Text('Расход: ${(usage)}',
                                               textAlign: TextAlign.left,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold)),

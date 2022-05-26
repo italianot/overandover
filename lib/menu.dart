@@ -29,7 +29,7 @@ class MenuPage extends StatelessWidget {
           child: Text('Меню', style: TextStyle(fontSize: 20)),
         )
       ],
-    );
+    ); 
 
     Widget body = Column(
       children: const <Widget>[
@@ -66,8 +66,8 @@ class MenuPage extends StatelessWidget {
               color: Color.fromARGB(255, 219, 145, 8)),
           title: const Text("Личная информация"),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AccountPage()));
+            Navigator.pushNamed(context, '/accountPage');
+            
           },
         ),
         ListTile(
@@ -75,8 +75,8 @@ class MenuPage extends StatelessWidget {
               color: Color.fromARGB(255, 219, 145, 8)),
           title: const Text("Выход"),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.pushNamed(context, '/');
+            
           },
         )
       ],

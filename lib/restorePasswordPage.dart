@@ -30,7 +30,7 @@ class _RestorePasswordState extends State<RestorePasswordPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(builder: (context) => const MyApp()),
                   );
                 },
                 icon: const Icon(Icons.arrow_back)),
@@ -82,7 +82,7 @@ class _RestorePasswordState extends State<RestorePasswordPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                                builder: (context) => const MyApp()));
                       },
                       child: const Text('Ок'),
                     ),

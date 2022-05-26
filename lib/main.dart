@@ -1,42 +1,74 @@
 import 'package:flutter/material.dart';
+import 'accountPage.dart';
+import 'history.dart';
+import 'menu.dart';
 import 'restorePasswordPage.dart';
 import 'homePage.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MaterialApp(
+initialRoute: '/',
+routes: {
+'/': (contex) => MyApp(),
+'/homePage': (contex)=>HomePage(),
+'/restorePage': (contex) => RestorePasswordPage(),
+'/menuPage': (contex)=> MenuPage(),
+'/accountPage':(contex)=>AccountPage(),
+'/historyPage': (contex)=>HistoryPage(),
+},
+));
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
-  }
+  State<StatefulWidget> createState() => _HomeScreen();
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class _HomeScreen extends State<MyApp> {
+  bool isButtonDisabled = false; // to enable enter button
+  String login = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
+    /*void auth(context) {
+      if (login == 'login' && password == 'pass') {
+        print(login);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+      } else {
+        print('daaa');
+      }
+    }*/
+
     Widget inputSection = Column(
       children: <Widget>[
         TextFormField(
-            decoration: const InputDecoration(hintText: 'Укажите ваш email'),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Пожалуйста, укажите ваш email';
-              }
-              return null;
-            }),
+          decoration: const InputDecoration(hintText: 'Укажите ваш email'),
+          onChanged: (String enteredData) {
+            login = enteredData;
+          },
+          // validator: (login) {
+          //   if (login == null || login.isEmpty) {
+          //     return 'Пожалуйста, укажите ваш email';
+          //   }
+          //   return login;
+          // }
+        ),
         TextFormField(
-            decoration: const InputDecoration(hintText: 'Укажите ваш пароль'),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Пожалуйста, укажите ваш пароль';
-              }
-              return null;
-            }),
+          decoration: const InputDecoration(hintText: 'Укажите ваш пароль'),
+          onChanged: (String enteredData) {
+            password = enteredData;
+          },
+          // validator: (String? password) {
+          //   if (password == null || password.isEmpty) {
+          //     return 'Пожалуйста, укажите ваш пароль';
+          //   }
+          //   return null;
+          // }
+        ),
       ],
     );
 
@@ -55,10 +87,12 @@ class HomeScreen extends StatelessWidget {
             ),
             child: const Text("Войти"),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
+              if (login == 'login' && password == 'pass') {
+                print(login);
+                Navigator.pushNamed(context, '/homePage');
+              } else {
+                print('daaa');
+              }
             },
           ),
         ),
@@ -67,11 +101,7 @@ class HomeScreen extends StatelessWidget {
           child: FlatButton(
             child: const Text("Забыли пароль?"),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RestorePasswordPage()),
-              );
+              Navigator.pushNamed(context, '/restorePage');
             },
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:overandover/post.dart';
+import 'package:overandover/useless/post.dart';
 import 'history.dart';
 import 'menu.dart';
-import 'post.dart';
+import 'useless/post.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,10 +15,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MenuPage()),
-            );
+            Navigator.pushNamed(context, '/menuPage');
           },
           icon: const Icon(Icons.person),
         ),
@@ -27,11 +24,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: IconButton(
           onPressed: () {
-            //readJson();
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HistoryPage()),
-            );
+            Navigator.pushNamed(context, '/historyPage');
           },
           icon: const Icon(Icons.view_headline),
         ),
@@ -74,9 +67,18 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      Text("Электроэнергия",
+          style: TextStyle(
+            fontSize: 20,
+          )),
       const ListTile(
-        leading: Icon(Icons.note_add, color: Color.fromARGB(255, 219, 145, 8)),
-        title: Text("Передача новых показаний"),
+        //leading: Icon(Icons.note_add, color: Color.fromARGB(255, 219, 145, 8)),
+        title: Text(
+          "Передача новых показаний",
+          // style: TextStyle(fontSize:20, fo
+          // ),
+        ),
+        dense: false,
       ),
       const ListTile(
         leading: Icon(Icons.warning, color: Color.fromARGB(255, 219, 145, 8)),
@@ -87,10 +89,6 @@ class HomePage extends StatelessWidget {
           softWrap: true,
         ),
         isThreeLine: true,
-      ),
-      const ListTile(
-        title: Text("Текущий расход: 5447 кВ.ч."),
-        dense: true,
       ),
       ElevatedButton(
         style: ButtonStyle(

@@ -34,7 +34,7 @@ class AccountPage extends StatelessWidget {
       children: <Widget>[
         Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10), 
             child: Table(
               columnWidths: const {
                 0: FlexColumnWidth(1),
