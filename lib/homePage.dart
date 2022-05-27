@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'rest_api.dart';
 
+var newIndication;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -64,19 +66,14 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      Text("Электроэнергия",
-          style: TextStyle(
-            fontSize: 20,
-          )),
-      const ListTile(
-        //leading: Icon(Icons.note_add, color: Color.fromARGB(255, 219, 145, 8)),
-        title: Text(
-          "Передача новых показаний",
-          // style: TextStyle(fontSize:20, fo
-          // ),
-        ),
-        dense: false,
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("Передача новых показаний",
+            style: TextStyle(
+              fontSize: 20,
+            )),
       ),
+      
       const ListTile(
         leading: Icon(Icons.warning, color: Color.fromARGB(255, 219, 145, 8)),
         subtitle: Text(
@@ -119,7 +116,11 @@ class HomePage extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
-        child: TextFormField(),
+        child: TextFormField(
+          onChanged: (String enteredData) {
+            newIndication = enteredData;
+          },
+        ),
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -133,7 +134,9 @@ class HomePage extends StatelessWidget {
             ),
           ),
           child: const Text("Передать показания"),
-          onPressed: () {},
+          onPressed: () {
+            quickMath();
+          },
         ),
       ),
     ]);
