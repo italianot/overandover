@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:overandover/menu.dart';
+import 'package:overandover/rest_api.dart';
 import 'menu.dart';
 
 class AccountPage extends StatelessWidget {
@@ -43,15 +44,19 @@ class AccountPage extends StatelessWidget {
               border: const TableBorder(
                   verticalInside: BorderSide(
                       width: 1, color: Colors.blue, style: BorderStyle.solid)),
-              children: const [
+              children: [
                 TableRow(children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 55, top: 5),
                     child: Text('ФИО', textAlign: TextAlign.left),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('Белов Никита Андреевич',
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    child: Text(client[0]['Surname'].toString() +
+                                      ' ' +
+                                      client[0]['Name'].toString() +
+                                      ' ' +
+                                      client[0]['MiddleName'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
@@ -63,7 +68,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('89277077000',
+                    child: Text(client[0]['PhoneNumber'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
@@ -75,7 +80,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('n@mail.ru',
+                    child: Text(client[0]['Email'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
@@ -87,7 +92,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('Иркутск',
+                    child: Text(client[0]['City'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
@@ -99,7 +104,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('Байкальская',
+                    child: Text(client[0]['Street'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
@@ -111,7 +116,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('123а/4',
+                    child: Text(client[0]['HouseNumber'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
@@ -123,7 +128,7 @@ class AccountPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10, top: 5),
-                    child: Text('56',
+                    child: Text(client[0]['Flat'].toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),

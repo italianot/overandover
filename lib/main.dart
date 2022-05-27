@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:overandover/rest_api.dart';
 import 'accountPage.dart';
 import 'history.dart';
 import 'menu.dart';
@@ -100,10 +101,14 @@ class _HomeScreen extends State<MyApp> {
               //postDATA();
 
               if (login == 'login' && password == 'pass') {
+                // m@mail.ru // 123
                 print(login);
+                print(password);
                 Navigator.pushNamed(context, '/homePage');
+                getHistory();
+                getClientInfo();
               } else {
-                print('daaa');
+                print('Неверный логин или пароль');
               }
             },
           ),
