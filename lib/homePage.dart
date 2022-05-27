@@ -68,12 +68,11 @@ class HomePage extends StatelessWidget {
       ),
       const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Text("Передача новых показаний",
+        child: Text("Передача новых показаний", /////// как варииант поместить в Card
             style: TextStyle(
               fontSize: 20,
             )),
       ),
-      
       const ListTile(
         leading: Icon(Icons.warning, color: Color.fromARGB(255, 219, 145, 8)),
         subtitle: Text(
@@ -83,6 +82,35 @@ class HomePage extends StatelessWidget {
           softWrap: true,
         ),
         isThreeLine: true,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
+        child: TextFormField(
+          onChanged: (String enteredData) {
+            newIndication = enteredData;
+          },
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(200, 40)),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
+          child: const Text("Передать показания"),
+          onPressed: () {
+            quickMath();
+          },
+        ),
+      ),
+      const Padding(
+        padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 18),
+        child: Text('или'),
       ),
       ElevatedButton(
         style: ButtonStyle(
@@ -110,38 +138,10 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      const Padding(
-        padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
-        child: Text('или'),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
-        child: TextFormField(
-          onChanged: (String enteredData) {
-            newIndication = enteredData;
-          },
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(const Size(200, 40)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-          ),
-          child: const Text("Передать показания"),
-          onPressed: () {
-            quickMath();
-          },
-        ),
-      ),
     ]);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter layout',
       home: Scaffold(
         body: ListView(
@@ -151,23 +151,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-/*class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  List _items = [];
-
-  Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/json/history.json');
-    final data = await json.decode(response);
-    setState(() {
-      _items = data["data"];
-    });
-  }
-}*/

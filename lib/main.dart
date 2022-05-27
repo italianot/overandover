@@ -8,6 +8,7 @@ import 'restorePasswordPage.dart';
 import 'homePage.dart';
 
 void main() => runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (contex) => MyApp(),

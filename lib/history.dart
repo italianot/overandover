@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:overandover/rest_api.dart';
 
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
@@ -13,6 +12,7 @@ class _HistoryState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter layout',
         home: Scaffold(
             body: Column(children: <Widget>[
@@ -45,11 +45,15 @@ class _HistoryState extends State<HistoryPage> {
                       child: ListTile(
                         leading: const Icon(Icons.light,
                             color: Color.fromARGB(255, 219, 145, 8)),
-                        title: Text(
-                            "${data["date"].toString()} от пользователя: ${data["client_id"].toString()}"),
+                        title: Text(data["date"]
+                            .toString()), //"${data["date"].toString()} от пользователя: ${data["client_id"].toString()}"),
                         subtitle: Container(
                           margin: const EdgeInsets.only(top: 5),
                           child: Table(
+                            columnWidths: const {
+                              0: FlexColumnWidth(1.2),
+                              1: FlexColumnWidth(1.8)
+                            },
                             border: const TableBorder(
                                 verticalInside: BorderSide(
                                     width: 1,
@@ -66,7 +70,7 @@ class _HistoryState extends State<HistoryPage> {
                                   padding:
                                       const EdgeInsets.only(left: 10, top: 5),
                                   child: Text(
-                                      "Показания: ${data["indication"].toString()}",
+                                      "Показания: ${data["indication"].toString()} кВт.ч",
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold)),
@@ -83,7 +87,7 @@ class _HistoryState extends State<HistoryPage> {
                                   padding:
                                       const EdgeInsets.only(left: 10, top: 5),
                                   child: Text(
-                                      'Расход: ${data["delta"].toString()}',
+                                      'Расход: ${data["delta"].toString()} кВт.ч',
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold)),
