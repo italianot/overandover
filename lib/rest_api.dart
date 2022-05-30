@@ -37,6 +37,7 @@ void getHistory() async {
 }
 
 void getClientInfo() async {
+  client.clear();
   Response response = await dio.get('http://electricity.tealeaf.su/api/client');
   var apidata = response.data; //get JSON decoded data from response
 
@@ -62,9 +63,10 @@ void quickMath() {
 void postNewIndication() async {
   DateTime now = DateTime.now();
   DateTime date = DateTime(now.year, now.month, now.day);
-  var todaysDate = DateTime.parse(date.toString().replaceAll("00:00:00.000", ""));
+  var todaysDate =
+      DateTime.parse(date.toString().replaceAll("00:00:00.000", ""));
   print(todaysDate);
-  
+
   int newIndicationInt = newIndication;
   var delta = int.parse(newIndication) - int.parse(lastIndication);
   Response response =
@@ -79,29 +81,26 @@ void postNewIndication() async {
   }); //id: 7, date: 2021-12-22, send_type: По компьютеру, indication: 400, client_id: 4, title: Электронергия, delta: 400
 }
 
-// void postNewClientInfo() async {
-//   newFullName
-
-
-//   Response response =
-//       await dio.post('http://electricity.tealeaf.su/api/client', data: {
-//     'id': client[0]['id'],
-//     'user_id': 2,
-//     'Surname': ,
-//     'Name': ,
-//     'MiddleName': ,
-//     'PhoneNumber': ,
-//     'Email': client[0]['Email'],
-//     'City': client[0]['City'],
-//     'Street': client[0]['Street'],
-//     'HouseNumber': client[0]['HouseNumber'],
-//     'Flat': client[0]['Flat'],
-//     'Login': client[0]['Login'],
-//   });
-//   //[{id: 4, user_id: 2, 
-//   //Surname: Романов, Name: Игорь, 
-//   //MiddleName: Романович, PhoneNumber: 77777777777777, 
-//   //Email: llll@gmail.com, City: Irkutsk, 
-//   //Street: Uritskogo, HouseNumber: 8, 
-//   //Flat: 2, Login: 3333333}]
-// }
+void postNewClientInfo() async {
+  Response response =
+      await dio.put('http://electricity.tealeaf.su/api/client', data: {
+    'id': client[0]['id'],
+    'user_id': 2,
+    'Surname': newSurname,
+    'Name': newName,
+    'MiddleName': newMiddleName,
+    'PhoneNumber': newPhoneNumber,
+    'Email': client[0]['Email'],
+    'City': client[0]['City'],
+    'Street': client[0]['Street'],
+    'HouseNumber': client[0]['HouseNumber'],
+    'Flat': client[0]['Flat'],
+    'Login': client[0]['Login'],
+  });
+  //[{id: 4, user_id: 2,
+  //Surname: Романов, Name: Игорь,
+  //MiddleName: Романович, PhoneNumber: 77777777777777,
+  //Email: llll@gmail.com, City: Irkutsk,
+  //Street: Uritskogo, HouseNumber: 8,
+  //Flat: 2, Login: 3333333}]
+}

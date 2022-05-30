@@ -3,12 +3,37 @@ import 'rest_api.dart';
 
 var newIndication;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<StatefulWidget> createState() => _HomePageState();
+}
+
+const List<String> counters = <String>[
+  "Счетчик CE303 R33",
+  "Меркурий",
+  "Юпитер",
+  "Рассвет",
+  "Счетчик FX34 V2"
+];
+
+//var activeColor = const Color.fromARGB(255, 219, 145, 8);
+
+class _HomePageState extends State<HomePage> {
+  late Color activeColor1;
+  late Color activeColor2;
+  //late Color defaultColor;
+
+  @override
+  void initState() {
+    activeColor1 = Color.fromARGB(255, 219, 145, 8);
+    activeColor2 = Color.fromARGB(255, 139, 139, 139);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    //final post = ModalRoute.of(context)!.settings.arguments as Post;
     Widget header = Row(children: <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -42,33 +67,184 @@ class HomePage extends StatelessWidget {
         title: Text("Ваши приборы учета"),
         dense: true,
       ),
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
-          child: SizedBox(
-            width: 150,
-            height: 170,
-            child: Card(
-              elevation: 10,
-              child: Column(
-                children: [
-                  Image.asset(
-                    "images/counter.jpg",
-                    width: 100,
-                    height: 140,
+
+      SizedBox(
+        height: 200,
+        child: ListView.builder(
+          shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+            itemCount: counters.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
+                child: SizedBox(
+                  width: 150,
+                  height: 170,
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        if (activeColor1 == Color.fromARGB(255, 139, 139, 139)) {
+                          activeColor1 = Color.fromARGB(255, 219, 145, 8);
+                          activeColor2 = Color.fromARGB(255, 139, 139, 139);
+                        } else {
+                          activeColor1 = Color.fromARGB(255, 219, 145, 8);
+                        }
+                      });
+                    },
+                    child: Card(
+                      shadowColor: activeColor1,
+                      elevation: 20,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "images/counter.jpg",
+                            width: 100,
+                            height: 140,
+                          ),
+                          Text(counters[index]),
+                        ],
+                      ),
+                    ),
                   ),
-                  const Text('Счетчик CE303 R33')
-                ],
-              ),
-            ),
-          ),
-        ),
+                ),
+              );
+            }),
       ),
+
+      // ListView(
+      //   shrinkWrap: true,
+      //   children: [
+      //     SingleChildScrollView(
+      //       scrollDirection: Axis.horizontal,
+      //       child: Row(
+      //         children: [
+      //           Padding(
+      //             padding: const EdgeInsets.only(
+      //                 top: 8, left: 20, right: 20, bottom: 8),
+      //             child: SizedBox(
+      //               width: 150,
+      //               height: 170,
+      //               child: InkWell(
+      //                 onTap: () {
+      //                   setState(() {
+      //                     if (activeColor1 ==
+      //                         Color.fromARGB(255, 139, 139, 139)) {
+      //                       activeColor1 = Color.fromARGB(255, 219, 145, 8);
+      //                       activeColor2 = Color.fromARGB(255, 139, 139, 139);
+      //                     } else {
+      //                       activeColor1 = Color.fromARGB(255, 219, 145, 8);
+      //                     }
+      //                   });
+      //                 },
+      //                 child: Card(
+      //                   shadowColor: activeColor1,
+      //                   elevation: 20,
+      //                   child: Column(
+      //                     children: [
+      //                       Image.asset(
+      //                         "images/counter.jpg",
+      //                         width: 100,
+      //                         height: 140,
+      //                       ),
+      //                       const Text('Счетчик CE303 R33')
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //           Padding(
+      //             padding: const EdgeInsets.only(
+      //                 top: 8, left: 20, right: 20, bottom: 8),
+      //             child: SizedBox(
+      //               width: 150,
+      //               height: 170,
+      //               child: InkWell(
+      //                 onTap: () {
+      //                   setState(() {
+      //                     if (activeColor2 ==
+      //                         Color.fromARGB(255, 139, 139, 139)) {
+      //                       activeColor2 = Color.fromARGB(255, 219, 145, 8);
+      //                       activeColor1 = Color.fromARGB(255, 139, 139, 139);
+      //                     } else {
+      //                       activeColor2 = Color.fromARGB(255, 219, 145, 8);
+      //                     }
+      //                   });
+      //                 },
+      //                 child: Card(
+      //                   shadowColor: activeColor2,
+      //                   elevation: 10,
+      //                   child: Column(
+      //                     children: [
+      //                       Image.asset(
+      //                         "images/counter.jpg",
+      //                         width: 100,
+      //                         height: 140,
+      //                       ),
+      //                       const Text('Меркурий')
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //           Padding(
+      //             padding: const EdgeInsets.only(
+      //                 top: 8, left: 20, right: 20, bottom: 8),
+      //             child: SizedBox(
+      //               width: 150,
+      //               height: 170,
+      //               child: InkWell(
+      //                 child: Card(
+      //                   elevation: 10,
+      //                   child: Column(
+      //                     children: [
+      //                       Image.asset(
+      //                         "images/counter.jpg",
+      //                         width: 100,
+      //                         height: 140,
+      //                       ),
+      //                       const Text('Юпитер')
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //           Padding(
+      //             padding: const EdgeInsets.only(
+      //                 top: 8, left: 20, right: 20, bottom: 8),
+      //             child: SizedBox(
+      //               width: 150,
+      //               height: 170,
+      //               child: InkWell(
+      //                 child: Card(
+      //                   elevation: 10,
+      //                   child: Column(
+      //                     children: [
+      //                       Image.asset(
+      //                         "images/counter.jpg",
+      //                         width: 100,
+      //                         height: 140,
+      //                       ),
+      //                       const Text('Меркурий')
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ],
+      // ),
+
       const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Text("Передача новых показаний", /////// как варииант поместить в Card
+        child: Text(
+            "Передача новых показаний", /////// как варииант поместить в Card
             style: TextStyle(
               fontSize: 20,
             )),

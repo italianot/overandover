@@ -309,6 +309,8 @@ class _AccountPageState extends State<AccountPage> {
                 isEnabled = false;
               });
               //transformNameIntoArray();
+              // postNewClientInfo();
+              // getClientInfo();
             },
           ),
         ),
