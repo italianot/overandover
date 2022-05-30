@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import 'accountPage.dart';
 import 'homePage.dart';
 
 Dio dio = Dio();
@@ -42,7 +43,7 @@ void getClientInfo() async {
   for (int i = 0; i < apidata["data"].length; i++) {
     if (apidata["data"][i]['id'] == 4) {
       client.add(apidata["data"][i]);
-      //print(client);
+      print(client);
     }
   }
 }
@@ -61,17 +62,46 @@ void quickMath() {
 void postNewIndication() async {
   DateTime now = DateTime.now();
   DateTime date = DateTime(now.year, now.month, now.day);
-  todaysDate = date.toString().replaceAll("00:00:00.000", "");
+  var todaysDate = DateTime.parse(date.toString().replaceAll("00:00:00.000", ""));
+  print(todaysDate);
+  
+  int newIndicationInt = newIndication;
   var delta = int.parse(newIndication) - int.parse(lastIndication);
   Response response =
       await dio.post('http://electricity.tealeaf.su/api/history', data: {
     'id': newIndicationId,
-    'date': todaysDate,
+    'date': date,
     'send_type': 'По телефону',
-    'indication': newIndication,
+    'indication': newIndicationInt,
     'client_id': '4',
     'title': 'Электроэнергия',
     'delta': delta
-  });
-  //id: 7, date: 2021-12-22, send_type: По компьютеру, indication: 400, client_id: 4, title: Электронергия, delta: 400
+  }); //id: 7, date: 2021-12-22, send_type: По компьютеру, indication: 400, client_id: 4, title: Электронергия, delta: 400
 }
+
+// void postNewClientInfo() async {
+//   newFullName
+
+
+//   Response response =
+//       await dio.post('http://electricity.tealeaf.su/api/client', data: {
+//     'id': client[0]['id'],
+//     'user_id': 2,
+//     'Surname': ,
+//     'Name': ,
+//     'MiddleName': ,
+//     'PhoneNumber': ,
+//     'Email': client[0]['Email'],
+//     'City': client[0]['City'],
+//     'Street': client[0]['Street'],
+//     'HouseNumber': client[0]['HouseNumber'],
+//     'Flat': client[0]['Flat'],
+//     'Login': client[0]['Login'],
+//   });
+//   //[{id: 4, user_id: 2, 
+//   //Surname: Романов, Name: Игорь, 
+//   //MiddleName: Романович, PhoneNumber: 77777777777777, 
+//   //Email: llll@gmail.com, City: Irkutsk, 
+//   //Street: Uritskogo, HouseNumber: 8, 
+//   //Flat: 2, Login: 3333333}]
+// }

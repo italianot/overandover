@@ -33,6 +33,62 @@ class _HistoryState extends State<HistoryPage> {
               child: Text('История показаний', style: TextStyle(fontSize: 20)),
             ),
           ]),
+
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: ListTile(
+          //     leading: const Icon(Icons.light,
+          //         color: Color.fromARGB(255, 219, 145, 8)),
+          //     title: Text('2022-05-29'
+          //         // data["date"]
+          //         //   .toString()
+          //         ), //"${data["date"].toString()} от пользователя: ${data["client_id"].toString()}"),
+          //     subtitle: Container(
+          //       margin: const EdgeInsets.only(top: 5),
+          //       child: Table(
+          //         columnWidths: const {
+          //           0: FlexColumnWidth(1.2),
+          //           1: FlexColumnWidth(1.8)
+          //         },
+          //         border: const TableBorder(
+          //             verticalInside: BorderSide(
+          //                 width: 1,
+          //                 color: Colors.blue,
+          //                 style: BorderStyle.solid)),
+          //         children: [
+          //           TableRow(children: [
+          //             Padding(
+          //               padding: const EdgeInsets.only(top: 5),
+          //               child: Text('Электроэнергия', textAlign: TextAlign.left),
+          //             ),
+          //             Padding(
+          //               padding: const EdgeInsets.only(left: 10, top: 5),
+          //               child: Text("Показания: 900 кВт.ч",
+          //                   textAlign: TextAlign.left,
+          //                   style: const TextStyle(fontWeight: FontWeight.bold)),
+          //             ),
+          //           ]),
+          //           TableRow(children: [
+          //             Padding(
+          //               padding: const EdgeInsets.only(top: 5),
+          //               child: Text('Способ: По телефону',
+          //                   textAlign: TextAlign.left),
+          //             ),
+          //             Padding(
+          //               padding: const EdgeInsets.only(left: 10, top: 5),
+          //               child: Text('Расход: 80 кВт.ч',
+          //                   textAlign: TextAlign.left,
+          //                   style: const TextStyle(fontWeight: FontWeight.bold)),
+          //             ),
+          //           ]),
+          //         ],
+          //       ),
+          //     ),
+          //     isThreeLine: true,
+          //     dense: false,
+          //   ),
+          // ),
+
           Expanded(
             child: ListView(
               scrollDirection: Axis.vertical,

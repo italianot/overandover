@@ -34,17 +34,18 @@ class _HomeScreen extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    void auth(context) {
-      if (login == 'login' && password == 'pass') {
-        print(login);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
-        );
-      } else {
-        print('daaa');
-      }
-    }
+    // void auth(context) {
+    //   if (login == 'login' && password == 'pass') {
+    //     print(login);
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => const HomePage()),
+    //     );
+    //   } else {
+    //     print('daaa');
+
+    //   }
+    // }
     // void postDATA() async {
     //   Dio dio = Dio();
     //   final response =
@@ -70,6 +71,7 @@ class _HomeScreen extends State<MyApp> {
           // }
         ),
         TextFormField(
+          obscureText: true,
           decoration: const InputDecoration(hintText: 'Укажите ваш пароль'),
           onChanged: (String enteredData) {
             password = enteredData;
@@ -109,7 +111,21 @@ class _HomeScreen extends State<MyApp> {
                 getHistory();
                 getClientInfo();
               } else {
-                print('Неверный логин или пароль');
+                showDialog<String>(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Неверный логин или пароль.'),
+                    // content: const Text(
+                    //     ''),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Ок'),
+                        child: const Text('Ок'),
+                      ),
+                    ],
+                  ),
+                );
               }
             },
           ),
