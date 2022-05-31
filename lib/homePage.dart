@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'rest_api.dart';
+import 'dart:collection';
 
 var newIndication;
 
@@ -17,18 +18,19 @@ const List<String> counters = <String>[
   "Рассвет",
   "Счетчик FX34 V2"
 ];
-
-//var activeColor = const Color.fromARGB(255, 219, 145, 8);
+var active = Color.fromARGB(255, 219, 145, 8);
+var defaultColor = Color.fromARGB(255, 139, 139, 139);
+List<dynamic> colors = <dynamic>[
+  active,
+  defaultColor,
+  defaultColor,
+  defaultColor,
+  defaultColor
+];
 
 class _HomePageState extends State<HomePage> {
-  late Color activeColor1;
-  late Color activeColor2;
-  //late Color defaultColor;
-
   @override
   void initState() {
-    activeColor1 = Color.fromARGB(255, 219, 145, 8);
-    activeColor2 = Color.fromARGB(255, 139, 139, 139);
     super.initState();
   }
 
@@ -71,29 +73,37 @@ class _HomePageState extends State<HomePage> {
       SizedBox(
         height: 200,
         child: ListView.builder(
-          shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
             itemCount: counters.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding:
-                    const EdgeInsets.only(top: 8, left: 20, right: 20, bottom: 8),
+                padding: const EdgeInsets.only(
+                    top: 8, left: 20, right: 20, bottom: 8),
                 child: SizedBox(
                   width: 150,
                   height: 170,
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        if (activeColor1 == Color.fromARGB(255, 139, 139, 139)) {
-                          activeColor1 = Color.fromARGB(255, 219, 145, 8);
-                          activeColor2 = Color.fromARGB(255, 139, 139, 139);
+                        // print(counters[index]);
+                        // print(colors);
+                        if (colors[index] == active) {
+                          colors[index] = active;
                         } else {
-                          activeColor1 = Color.fromARGB(255, 219, 145, 8);
-                        }
+                          colors.clear();
+                          colors.add(defaultColor);
+                          colors.add(defaultColor);
+                          colors.add(defaultColor);
+                          colors.add(defaultColor);
+                          colors.add(defaultColor);
+                          //print(colors);
+                          colors[index] = active;
+                        } 
                       });
                     },
                     child: Card(
-                      shadowColor: activeColor1,
+                      shadowColor: colors[index],
                       elevation: 20,
                       child: Column(
                         children: [
