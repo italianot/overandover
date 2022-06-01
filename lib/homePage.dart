@@ -20,12 +20,21 @@ const List<String> counters = <String>[
 ];
 var active = Color.fromARGB(255, 219, 145, 8);
 var defaultColor = Color.fromARGB(255, 139, 139, 139);
+var activeElevation = 100;
+var defaultElevation = 10;
 List<dynamic> colors = <dynamic>[
   active,
   defaultColor,
   defaultColor,
   defaultColor,
   defaultColor
+];
+List<dynamic> cardElevation = <dynamic>[
+  activeElevation,
+  defaultElevation,
+  defaultElevation,
+  defaultElevation,
+  defaultElevation
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -67,9 +76,8 @@ class _HomePageState extends State<HomePage> {
         leading: Icon(Icons.electrical_services,
             color: Color.fromARGB(255, 219, 145, 8)),
         title: Text("Ваши приборы учета"),
-        dense: true,
+        dense: false,
       ),
-
       SizedBox(
         height: 200,
         child: ListView.builder(
@@ -90,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                         // print(colors);
                         if (colors[index] == active) {
                           colors[index] = active;
+                          cardElevation[index] = activeElevation;
                         } else {
                           colors.clear();
                           colors.add(defaultColor);
@@ -97,14 +106,20 @@ class _HomePageState extends State<HomePage> {
                           colors.add(defaultColor);
                           colors.add(defaultColor);
                           colors.add(defaultColor);
-                          //print(colors);
                           colors[index] = active;
-                        } 
+                          cardElevation.clear();
+                          cardElevation.add(defaultElevation);
+                          cardElevation.add(defaultElevation);
+                          cardElevation.add(defaultElevation);
+                          cardElevation.add(defaultElevation);
+                          cardElevation.add(defaultElevation);
+                          cardElevation[index] = activeElevation;
+                        }
                       });
                     },
                     child: Card(
                       shadowColor: colors[index],
-                      elevation: 20,
+                      elevation: cardElevation[index],
                       child: Column(
                         children: [
                           Image.asset(
@@ -121,138 +136,8 @@ class _HomePageState extends State<HomePage> {
               );
             }),
       ),
-
-      // ListView(
-      //   shrinkWrap: true,
-      //   children: [
-      //     SingleChildScrollView(
-      //       scrollDirection: Axis.horizontal,
-      //       child: Row(
-      //         children: [
-      //           Padding(
-      //             padding: const EdgeInsets.only(
-      //                 top: 8, left: 20, right: 20, bottom: 8),
-      //             child: SizedBox(
-      //               width: 150,
-      //               height: 170,
-      //               child: InkWell(
-      //                 onTap: () {
-      //                   setState(() {
-      //                     if (activeColor1 ==
-      //                         Color.fromARGB(255, 139, 139, 139)) {
-      //                       activeColor1 = Color.fromARGB(255, 219, 145, 8);
-      //                       activeColor2 = Color.fromARGB(255, 139, 139, 139);
-      //                     } else {
-      //                       activeColor1 = Color.fromARGB(255, 219, 145, 8);
-      //                     }
-      //                   });
-      //                 },
-      //                 child: Card(
-      //                   shadowColor: activeColor1,
-      //                   elevation: 20,
-      //                   child: Column(
-      //                     children: [
-      //                       Image.asset(
-      //                         "images/counter.jpg",
-      //                         width: 100,
-      //                         height: 140,
-      //                       ),
-      //                       const Text('Счетчик CE303 R33')
-      //                     ],
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //           Padding(
-      //             padding: const EdgeInsets.only(
-      //                 top: 8, left: 20, right: 20, bottom: 8),
-      //             child: SizedBox(
-      //               width: 150,
-      //               height: 170,
-      //               child: InkWell(
-      //                 onTap: () {
-      //                   setState(() {
-      //                     if (activeColor2 ==
-      //                         Color.fromARGB(255, 139, 139, 139)) {
-      //                       activeColor2 = Color.fromARGB(255, 219, 145, 8);
-      //                       activeColor1 = Color.fromARGB(255, 139, 139, 139);
-      //                     } else {
-      //                       activeColor2 = Color.fromARGB(255, 219, 145, 8);
-      //                     }
-      //                   });
-      //                 },
-      //                 child: Card(
-      //                   shadowColor: activeColor2,
-      //                   elevation: 10,
-      //                   child: Column(
-      //                     children: [
-      //                       Image.asset(
-      //                         "images/counter.jpg",
-      //                         width: 100,
-      //                         height: 140,
-      //                       ),
-      //                       const Text('Меркурий')
-      //                     ],
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //           Padding(
-      //             padding: const EdgeInsets.only(
-      //                 top: 8, left: 20, right: 20, bottom: 8),
-      //             child: SizedBox(
-      //               width: 150,
-      //               height: 170,
-      //               child: InkWell(
-      //                 child: Card(
-      //                   elevation: 10,
-      //                   child: Column(
-      //                     children: [
-      //                       Image.asset(
-      //                         "images/counter.jpg",
-      //                         width: 100,
-      //                         height: 140,
-      //                       ),
-      //                       const Text('Юпитер')
-      //                     ],
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //           Padding(
-      //             padding: const EdgeInsets.only(
-      //                 top: 8, left: 20, right: 20, bottom: 8),
-      //             child: SizedBox(
-      //               width: 150,
-      //               height: 170,
-      //               child: InkWell(
-      //                 child: Card(
-      //                   elevation: 10,
-      //                   child: Column(
-      //                     children: [
-      //                       Image.asset(
-      //                         "images/counter.jpg",
-      //                         width: 100,
-      //                         height: 140,
-      //                       ),
-      //                       const Text('Меркурий')
-      //                     ],
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
-
       const Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.fromLTRB(8, 10, 8, 8),
         child: Text(
             "Передача новых показаний", /////// как варииант поместить в Card
             style: TextStyle(
