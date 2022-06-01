@@ -6,6 +6,10 @@ import 'history.dart';
 import 'menu.dart';
 import 'restorePasswordPage.dart';
 import 'homePage.dart';
+import 'package:email_validator/email_validator.dart';
+
+String p =
+    "[a-zA-Z0-9+.\_\%-+]{1,256}@[a-zA-Z0-9][a-zA-Z0-9-]{0,64}(.[a-zA-Z0-9][a-zA-Z0-9-]{0,25})+";
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -31,37 +35,55 @@ class _HomeScreen extends State<MyApp> {
   bool isButtonDisabled = false; // to enable enter button
   String login = '';
   String password = '';
+  String _errorMessage = '';
+  void validateEmail(String val) {
+    if (val.isEmpty) {
+      setState(() {
+        _errorMessage = "Email не может быть пустым!";
+      });
+    } else if (!EmailValidator.validate(val, true)) {
+      setState(() {
+        _errorMessage = "Неверный адрес электронной почты!";
+      });
+    } else {
+      setState(() {
+        _errorMessage = "";
+        login = val;
+      });
+    }
+  }
+
+  // void auth(context) {
+  //   if (login == 'login' && password == 'pass') {
+  //     print(login);
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const HomePage()),
+  //     );
+  //   } else {
+  //     print('daaa');
+
+  //   }
+  // }
+  // void postDATA() async {
+  //   Dio dio = Dio();
+  //   final response =
+  //       await dio.post("http://electricity.tealeaf.su/login", data: {
+  //     "email": "m@mail.ru", //login
+  //     "password": "123", //password
+  //   });
+  //   print(response);
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // void auth(context) {
-    //   if (login == 'login' && password == 'pass') {
-    //     print(login);
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => const HomePage()),
-    //     );
-    //   } else {
-    //     print('daaa');
-
-    //   }
-    // }
-    // void postDATA() async {
-    //   Dio dio = Dio();
-    //   final response =
-    //       await dio.post("http://electricity.tealeaf.su/login", data: {
-    //     "email": "m@mail.ru", //login
-    //     "password": "123", //password
-    //   });
-    //   print(response);
-    // }
-
     Widget inputSection = Column(
       children: <Widget>[
         TextFormField(
           decoration: const InputDecoration(hintText: 'Укажите ваш email'),
-          onChanged: (String enteredData) {
-            login = enteredData;
+          onChanged: (enteredData) {
+            validateEmail(enteredData);
+            
           },
           // validator: (login) {
           //   if (login == null || login.isEmpty) {
@@ -83,13 +105,20 @@ class _HomeScreen extends State<MyApp> {
           //   return null;
           // }
         ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+          child: Text(
+            _errorMessage,
+            style: const TextStyle(color: Colors.red),
+          ),
+        ),
       ],
     );
 
     Widget buttonSection = Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: ElevatedButton(
             style: ButtonStyle(
               minimumSize: MaterialStateProperty.all(const Size(200, 40)),
@@ -103,7 +132,7 @@ class _HomeScreen extends State<MyApp> {
             onPressed: () {
               //postDATA();
 
-              if (login == 'login' && password == 'pass') {
+              if (login == 'm@mail.ru' && password == 'pass') {
                 // m@mail.ru // 123
                 print(login);
                 print(password);

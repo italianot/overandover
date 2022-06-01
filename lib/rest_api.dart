@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
-
 import 'accountPage.dart';
 import 'homePage.dart';
 
 Dio dio = Dio();
-
+var userID = 4;
 List<dynamic> ai = [];
 List<dynamic> client = [];
 var lastIndication;
@@ -21,7 +20,7 @@ void getHistory() async {
   var apidata = response.data; //get JSON decoded data from response
 
   for (int i = 0; i < apidata["data"].length; i++) {
-    if (apidata["data"][i]['client_id'] == 4) {
+    if (apidata["data"][i]['client_id'] == userID) {
       ai.add(apidata["data"][i]);
     }
   }
@@ -42,9 +41,8 @@ void getClientInfo() async {
   var apidata = response.data; //get JSON decoded data from response
 
   for (int i = 0; i < apidata["data"].length; i++) {
-    if (apidata["data"][i]['id'] == 4) {
+    if (apidata["data"][i]['id'] == userID) {
       client.add(apidata["data"][i]);
-      print(client);
     }
   }
 }
@@ -75,11 +73,12 @@ void postNewIndication() async {
     'date': date,
     'send_type': 'По телефону',
     'indication': newIndicationInt,
-    'client_id': '4',
+    'client_id': userID,
     'title': 'Электроэнергия',
     'delta': delta
-  }); //id: 7, date: 2021-12-22, send_type: По компьютеру, indication: 400, client_id: 4, title: Электронергия, delta: 400
+  });
 }
+//id: 7, date: 2021-12-22, send_type: По компьютеру, indication: 400, client_id: 4, title: Электронергия, delta: 400
 
 void postNewClientInfo() async {
   Response response =
@@ -90,17 +89,12 @@ void postNewClientInfo() async {
     'Name': newName,
     'MiddleName': newMiddleName,
     'PhoneNumber': newPhoneNumber,
-    'Email': client[0]['Email'],
-    'City': client[0]['City'],
-    'Street': client[0]['Street'],
-    'HouseNumber': client[0]['HouseNumber'],
-    'Flat': client[0]['Flat'],
-    'Login': client[0]['Login'],
   });
-  //[{id: 4, user_id: 2,
+}
+
+//[{id: 4, user_id: 2,
   //Surname: Романов, Name: Игорь,
   //MiddleName: Романович, PhoneNumber: 77777777777777,
   //Email: llll@gmail.com, City: Irkutsk,
   //Street: Uritskogo, HouseNumber: 8,
   //Flat: 2, Login: 3333333}]
-}
